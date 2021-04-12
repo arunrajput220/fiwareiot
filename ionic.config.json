@@ -1,5 +1,7 @@
 {
   "name": "smartbuilding",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

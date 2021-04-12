@@ -1,0 +1,162 @@
+<ion-header>
+  <ion-toolbar class="myback1" >
+    <ion-buttons slot="start">
+      <ion-back-button (click)="entityManagerPageroute()"></ion-back-button>
+    </ion-buttons>
+    <ion-title ><b><b>Create Entity </b></b></ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="alertmsg()">
+        <ion-icon slot="icon-only"name="notifications">
+        </ion-icon>
+        <ion-badge  color="primary">{{alertcount}}</ion-badge>
+      </ion-button> 
+
+      <ion-button style=" font-size: 17px" (click)="userDetails()" >
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
+      
+      <ion-button class="iconsize" (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      </ion-button>
+     
+    
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="background">
+
+
+<!--
+  <ion-list lines="none">
+    <form [formGroup]="myForm">
+      <ion-item *ngFor="let control of myForm.controls | keyvalue">
+        <ion-input required type="text" formControlName="attribute_name" placeHolder="player name..."></ion-input>
+        <ion-input required type="text" formControlName="atrributr_object" placeHolder="player name..."></ion-input>
+        <ion-icon (click)="removeControl(control)" name="close-circle"></ion-icon>
+      </ion-item>
+    </form>
+  </ion-list>
+  <ion-button expand="full" color="light" (click)="addControl()">Add Player</ion-button>
+
+
+-->
+
+
+  
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+
+
+
+
+<h2 style="color: white;"><b>Create Fiware IoT Entity</b></h2>
+<br>
+<ion-card >
+<h6>Service Path Information</h6>
+<ion-item style="left:5%; width:35%;">
+  <ion-label position="floating" color="primary">Fiware Service</ion-label>
+  <ion-input  type="text" formControlName="fiware_service"></ion-input>
+</ion-item>
+
+
+<ion-item  style="left:5%; width:35%;">
+  <ion-label position="floating" color="primary">Fiware Service Path</ion-label>
+  <ion-input type="text" value="/"formControlName="fiware_servicepath" required></ion-input>
+</ion-item>
+
+</ion-card>
+<ion-card >
+<h6>Entity Information</h6>
+    <ion-item style="left:5%; width:35%;">
+      <ion-label position="floating" color="primary">Device Id</ion-label>
+      <ion-input  type="text" formControlName="device_id"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <div class="error-message"
+          *ngIf="validations_form.get('device_id').hasError(validation.type) && (validations_form.get('device_id').dirty || validations_form.get('device_id').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item  style="left:5%; width:35%;">
+      <ion-label position="floating" color="primary">Entity Name</ion-label>
+      <ion-input type="text" formControlName="entity_name" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.name">
+        <div class="error-message"
+          *ngIf="validations_form.get('entity_name').hasError(validation.type) && (validations_form.get('entity_name').dirty || validations_form.get('entity_name').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item  style="left:5%; width:35%;">
+      <ion-label position="floating" color="primary">Entity Type</ion-label>
+      <ion-input type="text" formControlName="entity_type" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.name">
+        <div class="error-message"
+          *ngIf="validations_form.get('entity_type').hasError(validation.type) && (validations_form.get('entity_type').dirty || validations_form.get('entity_type').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+
+    <ion-item  style="left:5%; width:35%;">
+      <ion-label position="floating" color="primary">Time Zone</ion-label>
+      <ion-input type="text" formControlName="time_zone" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.name">
+        <div class="error-message"
+          *ngIf="validations_form.get('time_zone').hasError(validation.type) && (validations_form.get('time_zone').dirty || validations_form.get('time_zone').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+  </ion-card> 
+      
+
+
+<ion-card>
+  <h4>Entity Atrributes Information</h4> <ion-fab vertical="top" horizontal="end" >
+    <ion-fab-button (click)="addControl1()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+    <ion-item> 
+    
+      <ion-input type="text" placeHolder="Object ID..." formControlName="atrribute_object"  required></ion-input>
+      <ion-input type="text" placeHolder="Atrribute Name..." formControlName="attribute_name"  required></ion-input>
+      <ion-input type="text" placeHolder="Atrribute Type..." formControlName="attribute_type"  required></ion-input>
+    </ion-item>
+   
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.attribute_name">
+        <div class="error-message"
+          *ngIf="validations_form.get('attribute_name').hasError(validation.type) && (validations_form.get('attribute_name').dirty || validations_form.get('attribute_name').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+  </ion-card>
+
+ <!--   <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Register</ion-button>   -->
+ <ion-button class="submit-btn" type="submit" >Register</ion-button>
+    <label class="error-message">{{errorMessage}}</label>
+    <label class="success-message">{{successMessage}}</label>
+  </form>
+  <p class="go-to-login">Already have an account? <a (click)="goLoginPage()">Try to Log In.</a></p>
+
+
+</ion-content> 
+
+

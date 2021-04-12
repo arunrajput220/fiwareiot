@@ -1,19 +1,34 @@
-<ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+<ion-app >
+  <ion-split-pane  contentId="main-content">
+    <ion-menu   contentId="main-content" type="overlay">
+      <ion-content class="test" >
+       
+     <ion-list id="inbox-list" >
+    <!--        <div class="logo">
+            <a href="https://www.creative-tim.com" class="simple-text">
+                <div class="logo-img">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"/>
+                </div>
+            </a>
+          </div>    --> 
+     
+          <ion-list-header style="color: white;" ><br><br>Fiware IoT Platform <br>
+            
+            </ion-list-header>
+            <ion-item style="color: white;"> arun.2.rajput@atos.net
+            <br><br><br></ion-item>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+   <!--      <ion-note >arun.2.rajput@atos.net</ion-note>-->
+
+          <ion-menu-toggle  auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-item style="color: white;"  routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
+      
+<!--
         <ion-list id="labels-list">
           <ion-list-header>Labels</ion-list-header>
 
@@ -22,6 +37,8 @@
             <ion-label>{{ label }}</ion-label>
           </ion-item>
         </ion-list>
+        -->
+    
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

@@ -1,0 +1,157 @@
+<ion-header>
+
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-toolbar class="myback1" >
+   
+    <ion-title ><b><b>Entity Manager</b></b></ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="alertmsg()">
+        <ion-icon slot="icon-only"name="notifications">
+        </ion-icon>
+        <ion-badge  color="primary">{{alertcount}}</ion-badge>
+      </ion-button> 
+
+      <ion-button style=" font-size: 17px" (click)="userDetails()" >
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
+      
+      <ion-button class="iconsize" (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      </ion-button>
+     
+    
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="createEntityPageroute()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-row>
+    <ion-col size="3"  *ngFor="let i of data1 ">
+      <ion-card  color="success" >
+        <ion-card-header>
+          <ion-card-subtitle><b>{{i.type}}</b></ion-card-subtitle>
+          <ion-card-title >{{i.id}}</ion-card-title>
+        </ion-card-header>
+        <ion-item  class="ion-activated">
+          <ion-label>Boolean</ion-label>
+        </ion-item>
+       </ion-card>
+       </ion-col>
+  </ion-row>
+
+   <!--  <ion-item>
+      <ion-label>{{dateValue}} </ion-label>
+     <ion-toggle type="boolean" default="false" (click)="stateCheck()" [(ngModel)]="state"></ion-toggle>
+   </ion-item>
+    <ion-row>
+      <ion-col size="6" >
+        <ion-card color="success" >
+          <ion-card-header>
+            <ion-card-subtitle><b>Humidity</b></ion-card-subtitle>
+            <ion-card-title class="fontsize">{{humidity}} </ion-card-title>
+          </ion-card-header>
+          <ion-item  class="ion-activated">
+            
+            <ion-label >% RH</ion-label>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size="6">
+        <ion-card color="secondary" >
+          <ion-card-header>
+            <ion-card-subtitle><b>Temperature</b></ion-card-subtitle>
+            <ion-card-title class="fontsize">{{temperature}} </ion-card-title>
+          </ion-card-header>
+          <ion-item  class="ion-activated">
+            <ion-label>Celcius ('C)</ion-label>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  
+    
+    <ion-row>
+      <ion-col size="6">
+        <ion-card color="danger">
+          <ion-card-header>
+            <ion-card-subtitle><b>Air Quality</b></ion-card-subtitle>
+            <ion-card-title class="fontsize" >{{airquality}}</ion-card-title>
+          </ion-card-header>
+          <ion-item  class="ion-activated">
+            <ion-label>ppm</ion-label>
+          </ion-item>
+        
+        </ion-card>
+      </ion-col>
+      
+      <ion-col size="6">
+        <ion-card  color="warning">
+          <ion-card-header>
+            <ion-card-subtitle><b>Distance</b></ion-card-subtitle>
+            <ion-card-title class="fontsize">{{distance}}</ion-card-title>
+          </ion-card-header>
+          <ion-item  class="ion-activated">
+            <ion-label>Centimeter (cm)</ion-label>
+          </ion-item>
+         </ion-card>
+         </ion-col>
+  </ion-row>
+  
+  
+  <ion-row>
+    <ion-col size="6">
+      <ion-card color="tertiary">
+        <ion-card-header>
+          <ion-card-subtitle><b>IR Sensor </b></ion-card-subtitle>
+          <ion-card-title class="fontsize" >{{ir_data}}</ion-card-title>
+        </ion-card-header>
+        <ion-item  class="ion-activated">
+          <ion-label>Boolean</ion-label>
+        </ion-item>
+      
+      </ion-card>
+    </ion-col>
+    
+    <ion-col size="6">
+      <ion-card  color="success">
+        <ion-card-header>
+          <ion-card-subtitle><b>LDR State</b></ion-card-subtitle>
+          <ion-card-title class="fontsize">{{ldr}}</ion-card-title>
+        </ion-card-header>
+        <ion-item  class="ion-activated">
+          <ion-label>Boolean</ion-label>
+        </ion-item>
+       </ion-card>
+       </ion-col>
+  </ion-row>-->
+
+
+<!--
+    
+  <ion-list  *ngFor="let i of data1 ">
+    <ion-item>
+    <ion-button  color="primary" slot="end" >View</ion-button>
+      <ion-avatar slot="start">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT-YNrHLBgc1meB4kwMq4tsi0j9ntuzW_Pd_6-x7HNfpCet2BDO&usqp=CAU">
+      </ion-avatar>
+      <ion-label>
+        {{i.id}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
+  -->
+  
+  </ion-content>
+  

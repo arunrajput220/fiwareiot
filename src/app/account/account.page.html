@@ -1,0 +1,114 @@
+<ion-header >
+  <ion-toolbar class="myback" >
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+     Account   
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="background" >
+  <ion-content class="speaker-detail">
+    <ion-header class="ion-no-border">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons *ngIf="speaker" slot="end">
+          <ion-button (click)="openContact(speaker)">
+            <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
+          </ion-button>
+          <ion-button (click)="openSpeakerShare(speaker)">
+            <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+  
+   <div > 
+    <div class="speaker-background">
+   <!--  <img src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Farun.jpg?alt=media&token=c5ab92a5-6023-419b-ae87-257a8b8e501c" [alt]="Arun">
+   --> 
+    </div>
+
+
+   
+      <ion-card style="position:absolute; top:120px; left:75px; width:200px; height:200px">
+       
+        <ion-card-header>
+         <ion-img style="width :100%; height:100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Farun.jpg?alt=media&token=c5ab92a5-6023-419b-ae87-257a8b8e501c" [alt]="Arun"></ion-img>
+              
+        </ion-card-header>
+        <ion-card-content>
+      
+        </ion-card-content>
+      
+      </ion-card>
+      
+
+<br>
+<!--
+    <div style="position:absolute; top:120px; left:80px; width:200px; height:10px;border:10px">
+      <ion-card>
+       
+        <ion-card-header>
+          <ion-img width="10" height="10px" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fprofile.png?alt=media&token=3334061c-f427-402f-b2af-e3392c796b0c"></ion-img>
+              
+        </ion-card-header>
+        <ion-card-content>
+      
+        </ion-card-content>
+      
+      </ion-card>
+    </div>   
+  
+    -->   
+    <br>
+  
+    <div class="ion-padding speaker-detail" style="text-align:center">
+      <br>
+      <div class="ion-padding speaker-detail" style="text-align:center; top:100px; left:100px; width:360px; height:50px;border:10px;">
+      <p ><b>Arun Rajput</b></p>
+    </div>
+      <hr>
+      <ion-chip color="dark">
+        <ion-icon name="mail"></ion-icon>
+        <ion-label>Email : {{userEmail}}</ion-label>
+      </ion-chip>
+      <ion-chip color="dark">
+        <ion-icon name="call"></ion-icon>
+        <ion-label>Contact : +91 8899332244</ion-label>
+      </ion-chip>
+
+      <ion-chip color="dark">
+        <ion-icon name="location"></ion-icon>
+        <ion-label>Location : New Delhi,India</ion-label>
+      </ion-chip>
+      
+  
+    <!--   <ion-chip color="dark" button (click)="openExternalUrl('https://instagram.com/arunrajput220')">
+        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-label>Instagram</ion-label>
+      </ion-chip>
+  
+     <ion-chip color="dark" button (click)="openExternalUrl('https://facebook.com/arun.rajput.399041')">
+        <ion-icon name="logo-facebook"></ion-icon>
+        <ion-label>Facebook</ion-label>
+      </ion-chip>
+  
+      <ion-chip color="dark" button (click)="openExternalUrl('https://linkedin.com/in/arunrajput220')">
+        <ion-icon name="logo-linkedin"></ion-icon>
+        <ion-label>LinkedIn</ion-label>
+      </ion-chip>
+    -->  
+      
+  
+      
+    </div>
+  </div>
+  </ion-content>
+  
+</ion-content>

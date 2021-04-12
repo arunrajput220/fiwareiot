@@ -6,13 +6,39 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+    {
+      title: 'Dashboard',
+      url: '/dashboard',
+      icon: 'stats-chart'
+    },
+    {
+      title: 'Entity Manager',
+      url: '/entitymanager',
+      icon: 'speedometer'
+    },
+
+    
+    {
+      title: 'Account',
+      url: '/account',
+      icon: 'person'
+    },
+    {
+      title: 'IoT Platform Support',
+      url: '/main',
+      icon: 'pulse'
+    },
+    {
+      title: 'About Developer',
+      url: '/aboutdeveloper',
+      icon: 'skull'
+    },
+    {
+      title: 'Support',
+      url: '/support',
+      icon: 'build'
+    }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = ['AtoS Fiware POC Application'];
   constructor() {}
 }

@@ -1,0 +1,75 @@
+<ion-content class="speaker-detail">
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+       <ion-title>About Developer</ion-title>
+      </ion-buttons>
+      <ion-buttons *ngIf="speaker" slot="end">
+        <ion-button (click)="openContact(speaker)">
+          <ion-icon slot="icon-only" ios="call-outline" md="call-sharp"></ion-icon>
+        </ion-button>
+        <ion-button (click)="openSpeakerShare(speaker)">
+          <ion-icon slot="icon-only" ios="share-outline" md="share-sharp"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+ <div class="background"> 
+  <div class="speaker-background">
+    <ion-card style="position:absolute; top:100px; left:50px; width:200px; height:200px">
+       
+      <ion-card-header>
+       <ion-img style="width :100%; height:100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Farun.jpg?alt=media&token=c5ab92a5-6023-419b-ae87-257a8b8e501c" [alt]="Arun"></ion-img>
+            
+      </ion-card-header>
+      <ion-card-content>
+    
+      </ion-card-content>
+    
+    </ion-card>
+  <!-- <img src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Farun.jpg?alt=media&token=c5ab92a5-6023-419b-ae87-257a8b8e501c" [alt]="Arun">
+ -->   
+  </div>
+
+  
+  <div class="ion-padding speaker-detail" style="text-align: center;">
+    <h2><b>Arun Rajput</b></h2>
+    
+    <p >Say hi on Social Media!</p>
+    <hr>
+    <ion-chip color="dark" button (click)="openExternalUrl('https://github.com/arunrajput220')">
+      <ion-icon name="logo-github"></ion-icon>
+      <ion-label>GitHub</ion-label>
+    </ion-chip>
+
+    <ion-chip color="dark" button (click)="openExternalUrl('https://instagram.com/arunrajput220')">
+      <ion-icon name="logo-instagram"></ion-icon>
+      <ion-label>Instagram</ion-label>
+    </ion-chip>
+
+ <!--   <ion-chip color="dark" button (click)="openExternalUrl('https://facebook.com/arun.rajput.399041')">
+      <ion-icon name="logo-facebook"></ion-icon>
+      <ion-label>Facebook</ion-label>
+    </ion-chip>
+ -->   
+    <ion-chip color="dark" button (click)="openExternalUrl('https://linkedin.com/in/arunrajput220')">
+      <ion-icon name="logo-linkedin"></ion-icon>
+      <ion-label>LinkedIn</ion-label>
+    </ion-chip>
+
+    <br>
+    <ion-chip color="dark">
+      <ion-icon name="call"></ion-icon>
+      <ion-label>Contact : +91 8899332244</ion-label>
+    </ion-chip>
+
+    <ion-chip color="dark">
+      <ion-icon name="location"></ion-icon>
+      <ion-label>Location : New Delhi,India</ion-label>
+    </ion-chip>
+
+    
+  </div>
+</div>
+</ion-content>
