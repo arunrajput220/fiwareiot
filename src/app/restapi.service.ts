@@ -30,7 +30,7 @@ check:any;
 
 
   getEntity(): Observable<any> {
-    return this.http.get("http://20.197.62.1:3000/fiware/getentity", httpOptions)
+    return this.http.get("http://137.135.116.1:3000/fiware/getentity", httpOptions)
   }
 
   createEntity(payload): Observable<any> {
@@ -39,9 +39,9 @@ check:any;
     console.log(payload)
   console.log("heating....")
 
-  
+ 
 
-    return this.http.post("http://localhost:1337/localhost:3000/fiware/createentity", payload,httpOptionsfirebase)
+    return this.http.post("http://137.135.116.1:3000/fiware/createentity", payload,httpOptionsfirebase)
     /*
 
    let fiware_service_ls ;
@@ -86,31 +86,31 @@ check:any;
 
 
   getNorthWeatherStation(): Observable<any> {
-    return this.http.get("http://20.197.62.1:3000/fiware/northweatherstation",httpOptions)
-  //  return this.http.get("http://20.197.62.1:3000/v2/entities/urn:ngsi-ld:NorthWeatherStation", httpOptionsStateWeatherDepartment)
+  //  return this.http.get("http://137.135.116.1:3000/fiware/northweatherstation",httpOptionsStateWeatherDepartment)
+   return this.http.get("http://20.197.62.1:3000/v2/entities/urn:ngsi-ld:NorthWeatherStation", httpOptionsStateWeatherDepartment)
   }
 
   getNorthWeatherStationfromnodeserver(): Observable<any> {
-    return this.http.get("http://20.197.62.1:3000/fiware/northweatherstation", httpOptions)
+    return this.http.get("http://137.135.116.1:3000/fiware/northweatherstation", httpOptions)
   }
 
   getNorthWeatherStationfromnodeserverofcunus(): Observable<any> {
-    return this.http.get("http://20.197.62.1:3000/fiware/cynus", httpOptions)
+    return this.http.get("http://137.135.116.1:3000/fiware/cynus", httpOptions)
   }
 
   getTemperatureNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://20.197.62.1:3000/fiware/cynus/temperature", httpOptions)
+    return this.http.get("http://137.135.116.1:3000/fiware/cynus/temperature", httpOptions)
   }
   getHumidityNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://20.197.62.1:3000/fiware/cynus/humidity", httpOptions)
+    return this.http.get("http://137.135.116.1:3000/fiware/cynus/humidity", httpOptions)
   }
 
   getAirQualityNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://20.197.62.1:3000/fiware/cynus/airquality", httpOptions)
+    return this.http.get("http://137.135.116.1:3000/fiware/cynus/airquality", httpOptions)
   }
 
   getWindSpeedNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://20.197.62.1:3000/fiware/cynus/windspeed", httpOptions)
+    return this.http.get("http://137.135.116.1:3000/fiware/cynus/windspeed", httpOptions)
   }
 
 
