@@ -162,31 +162,24 @@ ion-button {
   color:#F8F8F8;
   text-align:center;
   }
-  .splitleft{
-    top:10%;
-    left: 0%;
-    height: 100%;
-    width: 20%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
-    border: yellow 20px;
-    background:rgb(111, 141, 111);
 
-  }
-  .splitright{
-    left: 20%;
-    height: 100%;
-    width: 80%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
-    background:rgb(85, 87, 85);
-  }
+                .lineChart1Shadow {
+                    -webkit-filter: drop-shadow( 0px 20px 6px rgba(0,0,0,0.3) );
+                            filter: drop-shadow( 0px 20px 6px rgba(0,0,0,0.3) );
+                }
 
 
 
+               
+                .modal-wrapper {
+                  background: #222;
+                }
+                
+                /* Works - pass "my-custom-class" in cssClass to increase specificity */
+                .my-custom-class .modal-wrapper {
+                  background: #222;
+                }
+
+                .background1{
+                  --background: rgb(131, 127, 127);
+                }

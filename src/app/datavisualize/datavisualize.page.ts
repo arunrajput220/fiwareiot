@@ -3,12 +3,15 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { RestapiService } from '../restapi.service';
 
+import {DashboardPage} from '../dashboard/dashboard.page'
+import {DatavisPage} from '../datavis/datavis.page'
+
 @Component({
-  selector: 'app-entitymanager',
-  templateUrl: './entitymanager.page.html',
-  styleUrls: ['./entitymanager.page.scss'],
+  selector: 'app-datavisualize',
+  templateUrl: './datavisualize.page.html',
+  styleUrls: ['./datavisualize.page.scss'],
 })
-export class EntitymanagerPage implements OnInit {
+export class DatavisualizePage implements OnInit {
 
   data1:any=[]
 
@@ -16,12 +19,23 @@ export class EntitymanagerPage implements OnInit {
     public alertController: AlertController,
     public modalController: ModalController ,
     public toastController: ToastController,
-    public router: Router,) {
+    public router: Router,
+    ) {
 
       this.allEntities()
      }
 
   ngOnInit() {
+  }
+
+
+  async presentModal(val1,val2) {
+    DatavisPage.prototype.getval(val1,val2)
+    const modal = await this.modalController.create({
+      component: DatavisPage,
+      cssClass: 'my-custom-class'
+    });
+    return await modal.present();
   }
 
   

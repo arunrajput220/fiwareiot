@@ -1,0 +1,88 @@
+<ion-header>
+
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-toolbar class="myback1" >
+   
+    <ion-title ><b><b>Data Visulizer</b></b></ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="cancel()">
+        <ion-icon slot="icon-only"name="">
+        </ion-icon>
+        <ion-badge  color="primary">{{alertcount}}</ion-badge>
+      </ion-button> 
+
+     
+     
+    
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+</ion-header>
+<ion-content class="background">
+
+
+
+  <ion-grid>
+    <ion-row>
+  
+    
+  
+      <ion-col size="5.5" *ngFor="let i of data" >
+        <ion-card class="ion-card-design" color="">
+          <ion-card-header style="text-align: center;">
+            <ion-card-subtitle class="cardalign" (click)="deviceData(1)">
+              {{i.attrName}}
+              <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
+              </ion-icon>  
+            </ion-card-subtitle>
+            <div class="div1">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="3">
+                    </ion-col>
+                    <ion-col size="5">
+                      <ion-img width="10" height="10px" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fhumidity%20(1).png?alt=media&token=efd97976-9946-433f-b637-2d6647dc45aa">
+                    </ion-img>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          <ion-card-title class="fontsize" [color]="data>30?'danger':(data>18?'success':'warning')" >
+            {{i.attrValue}}
+          </ion-card-title>
+          {{i.attrType}}
+        <p>{{i.recvTime}}</p>  
+        </ion-card-header>
+        </ion-card>
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+
+  
+  <ion-grid>
+    <ion-row>
+   
+     <ion-col  col-12 col-xl-2 col-lg-3 col-md-4>
+    <ion-card>
+      <ion-item class="graph">
+        Temperature Data Graph
+        <ion-buttons slot="end">
+            <ion-button (click)="presentPopover()">
+              <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      <ion-card-content>
+       <canvas #lineCanvas style="position: relative; height:10vh; width:10vw"></canvas>
+      </ion-card-content>
+    </ion-card>
+  </ion-col> 
+  </ion-row>
+  </ion-grid>
+  
+
+
+</ion-content>

@@ -10,7 +10,7 @@ import {  MenuController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   constructor(private menuCtrl:MenuController,public router: Router) {
-    this.menuCtrl.close()
+    //this.menuCtrl.close()
     this.menuCtrl.enable(false);
    }
 
@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   loginUser(){
-    this.router.navigateByUrl('aboutdeveloper')
+    this.router.navigateByUrl('home')
   }
 
 }

@@ -22,6 +22,7 @@
     "@ionic-native/core": "^5.32.0",
     "@ionic-native/in-app-browser": "^5.32.0",
     "@ionic/angular": "^5.5.2",
+    "@swimlane/ngx-datatable": "^19.0.0",
     "chart.js": "^2.9.4",
     "chartist": "^0.11.4",
     "cordova-android": "7.0.0",

@@ -1,25 +1,28 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
-
+import { AlertController, IonSlides, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { Chart } from "chart.js";
 import {RestapiService} from '../restapi.service'
 
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
+  selector: 'app-dashtest',
+  templateUrl: './dashtest.page.html',
+  styleUrls: ['./dashtest.page.scss'],
 })
-export class DashboardPage implements OnInit {
- 
+export class DashtestPage implements OnInit {
+  @ViewChild('slides', { static: true }) slider: IonSlides;  
+  @ViewChild('slides') slides;
+
+
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
   @ViewChild('airqualitygraph') private airqualitygraph: ElementRef;
   @ViewChild('humiditygraph') private humiditygraph: ElementRef;
   @ViewChild('windspeedgraph') private windspeedgraph: ElementRef;
 
-
  
+  segment=0
+
+
   lineChart: any;
   airqualitychart:any;
   windspeedchart:any;
@@ -107,18 +110,12 @@ powerbackupLabel = "%";
  windspeeddata:any
  pressure:any
 
-
- cygnustime:any=[];
- cygnusvalus:any=[];
-
   
 
-  constructor(private api :RestapiService,
-    public loadingController: LoadingController,
+  constructor(private api :RestapiService,public loadingController: LoadingController,
     public alertController: AlertController,
     public modalController: ModalController ,
-    public toastController: ToastController,
-    public router: Router
+    public toastController: ToastController
     ) {
 //this.lineChartMethod()
 this.Initization()
@@ -136,14 +133,14 @@ this.fix()
   
   }
 
-
-  getval(data){
-    console.log(data)
-  }
  
-  logout(){
-    this.router.navigateByUrl('login');
-  }
+
+  slideChanged() { 
+    this.slides.nativeElement.getActiveIndex().then(index => {
+       console.log(index);
+    });
+    }  
+
 
   async presentPopover() {
     const toast = await this.toastController.create({
@@ -185,6 +182,10 @@ this.fix()
   fix(){
     setInterval( ()=>{
       this.Initizationonce();
+      this.lineChartMethod();
+      this.windspeedChartMethod()
+      this.humdityChartMethod();
+      this.airqualityChartMethod();
     },5000)  
    }
 
@@ -199,8 +200,11 @@ this.fix()
     await this.api.getNorthWeatherStationfromnodeserver()
           .subscribe(res => { 
             console.log(res)
-           
-          
+           // console.log(res.slice(19, 38))
+           let checkpoint = this.temptime[this.temptime.length - 1]
+           let humiditycheckpoint = this.humidtime[this.humidtime.length - 1]
+           let windspeedcheckpoint = this.windtime[this.windtime.length - 1]
+           let aircheckpoint = this.airqtime[this.airqtime.length - 1]
            let check = res.id
             this.title = check.slice(12,32)
            
@@ -212,7 +216,6 @@ this.fix()
            this.airgaugeValue = res["Air Quality"].value;
            this.pressure =res.Pressure.value;
            this.powerbackupValue =res.Power.value;
-           console.log("Power value : "+ this.powerbackupValue)
           // console.log("Windspeed : ",this.windspeeddata)
           if ( this.watertankValue >= 30){
             if (this.alertarr[this.alertarr.length -1]!="Temp : "+this.watertankValue+ " at : "+(res.Temperature.metadata.TimeInstant.value).slice(11, 19)){
@@ -221,14 +224,30 @@ this.fix()
             console.log(this.alertarr) 
             }     
           }
-         
+          if((res["Air Quality"].metadata.TimeInstant.value).slice(11, 19)!=aircheckpoint)
+          {
+            this.airqdata.push(this.airgaugeValue)
+            this.airqtime.push((res["Air Quality"].metadata.TimeInstant.value).slice(11, 19))
+          }
 
-          this.cygnusTemperature()
-          this.cygnusHumidity()
-          this.cygnusAirQuality()
-          this.cygnusWindSpeed()
+          if((res.Temperature.metadata.TimeInstant.value).slice(11, 19)!=checkpoint)
+          {
+            this.tempdata.push(this.watertankValue)
+            this.temptime.push((res.Temperature.metadata.TimeInstant.value).slice(11, 19))
+          }
 
-         
+
+          if((res.Humidity.metadata.TimeInstant.value).slice(11, 19)!=humiditycheckpoint)
+          {
+          this.humiddata.push(this.humditydata)
+          this.humidtime.push((res.Humidity.metadata.TimeInstant.value).slice(11, 19))
+          }
+          if((res.WindSpeed.metadata.TimeInstant.value).slice(11, 19)!=windspeedcheckpoint)
+          {
+          this.winddata.push(this.windspeeddata)
+          this.windtime.push((res.WindSpeed.metadata.TimeInstant.value).slice(11, 19))
+          
+          }
            // for(let i=0;i<res.count;++i){
             //  console.log(res.devices[i]['device_id'])
          //   this.entities.push(res.devices[i]['device_id'])
@@ -265,18 +284,31 @@ this.fix()
            this.pressure =res.Pressure.value;
            this.powerbackupValue =res.Power.value;
           // console.log("Windspeed : ",this.windspeeddata)
-           this.cygnusTemperature()
-           this.cygnusHumidity()
-           this.cygnusAirQuality()
-           this.cygnusWindSpeed()
-         
+           this.tempdata.push(this.watertankValue)
+           this.temptime.push((res.Temperature.metadata.TimeInstant.value).slice(11, 19))
+           this.airqdata.push(this.airgaugeValue)
+           this.airqtime.push((res["Air Quality"].metadata.TimeInstant.value).slice(11, 19))
+           this.humiddata.push(this.humditydata)
+           this.humidtime.push((res.Humidity.metadata.TimeInstant.value).slice(11, 19))
+           this.winddata.push(this.windspeeddata)
+           this.windtime.push((res.WindSpeed.metadata.TimeInstant.value).slice(11, 19))
            if ( this.watertankValue >= 30){
             this.alertarr.push("Temp : "+this.watertankValue+ " at : "+(res.Temperature.metadata.TimeInstant.value).slice(11, 19))
             this.alertcount = this.alertarr.length;              
             console.log(this.alertarr )  
           }
-         
-         
+          if(this.tempdata.length == 6)
+          {
+            this.tempdata.splice(0, 1)
+            this.temptime.splice(0, 1)
+            this.lineChartMethod();
+          } 
+          if(this.airqdata.length == 6)
+          {
+            this.airqdata.splice(0, 1)
+            this.airqtime.splice(0, 1)
+            this.airqualityChartMethod();
+          } 
            // for(let i=0;i<res.count;++i){
             //  console.log(res.devices[i]['device_id'])
          //   this.entities.push(res.devices[i]['device_id'])
@@ -289,115 +321,6 @@ this.fix()
       });
     
   }
-
-  
-  async cygnusHumidity(){
-    this.humidtime=[]
-    this.humiddata=[]
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-     
-    });
-   //await loading.present()
-    await this.api.getHumidityNorthWeatherStationCgynusHistoricdatafromnodeserver()
-          .subscribe(res => { 
-            for(let i=0;i<res.length;++i){
-              this.humidtime.push((res[i].recvTime).slice(11.16))
-              this.humiddata.push(res[i].attrValue)
-
-            }
-            this.humdityChartMethod();
-        loading.dismiss();
-      }, err => {
-        console.log(err);
-        loading.dismiss();
-      });
-     
-  }
-
-  
-  async cygnusWindSpeed(){
-    this.windtime=[]
-    this.winddata=[]
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-     
-    });
-   //await loading.present()
-    await this.api.getWindSpeedNorthWeatherStationCgynusHistoricdatafromnodeserver()
-          .subscribe(res => { 
-            for(let i=0;i<res.length;++i){
-              this.windtime.push((res[i].recvTime).slice(11.16))
-              this.winddata.push(res[i].attrValue)
-
-            }
-            this.windspeedChartMethod()
-        loading.dismiss();
-      }, err => {
-        console.log(err);
-        loading.dismiss();
-      });
-
-  }
-
-
-
-
-  async cygnusAirQuality(){
-    this.airqtime=[]
-    this.airqdata=[]
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-     
-    });
-   //await loading.present()
-    await this.api.getAirQualityNorthWeatherStationCgynusHistoricdatafromnodeserver()
-          .subscribe(res => { 
-            for(let i=0;i<res.length;++i){
-              this.airqtime.push((res[i].recvTime).slice(11.16))
-              this.airqdata.push(res[i].attrValue)
-
-            }
-            this.airqualityChartMethod();
-        loading.dismiss();
-      }, err => {
-        console.log(err);
-        loading.dismiss();
-      });
-      
-     
-    
-  }
-
-
-  async cygnusTemperature(){
-    this.temptime=[]
-    this.tempdata=[]
-    const loading = await this.loadingController.create({
-      cssClass: 'my-custom-class',
-     
-    });
-   //await loading.present()
-    await this.api.getTemperatureNorthWeatherStationCgynusHistoricdatafromnodeserver()
-          .subscribe(res => { 
-            for(let i=0;i<res.length;++i){
-              this.temptime.push((res[i].recvTime).slice(11.16))
-              this.tempdata.push(res[i].attrValue)
-
-            }
-            this.lineChartMethod();
-        loading.dismiss();
-      }, err => {
-        console.log(err);
-        loading.dismiss();
-      });
-
-      
-    
-  }
-
-
-
 
 
   async userDetails() {
@@ -468,8 +391,6 @@ this.fix()
       }
     });
   }
-
-
 
 
 
@@ -713,4 +634,5 @@ getSecondsAsDigitalClock(inputSeconds: number) {
 
 
 }
+
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json','fiware-service': 'openiot','fiware-servicepath': '/'})
 };
@@ -21,7 +22,43 @@ export class RestapiService {
 
 check:any;
 
+param:any;
+
   constructor(public http: HttpClient) { }
+
+
+  cygusparamset(val){
+this.param =val
+  }
+  getEntitydata(): Observable<any> {
+   let url ="http://137.135.116.1:3001/fiware/cynus/getdata/"+this.param
+   console.log(url)
+    return this.http.get(url, httpOptionsfirebase)
+  }
+
+
+  
+      getorionrealtime(val): Observable<any> {
+       let url ="http://137.135.116.1:3001/fiware/orion/getdata/"+val
+       console.log(url)
+        return this.http.get(url, httpOptionsfirebase)
+      }
+
+
+  gettimeseriescygnus(){
+
+  /*
+    //let data1 ='{"id":'+'"'+payload.id+'"'+',"type":'+'"'+payload.type+'"'+','
+    
+     let data='{"entity":'+'"'+'"'+'}'
+     data = JSON.stringify(data)
+     data=JSON.parse(data)
+    console.log(data)
+    */
+        return this.http.get("http://137.135.116.1:3001/fiware/cynus/getdata/"+this.param,httpOptionsfirebase)
+      }
+
+
 
 
   getDataValue(): Observable<any> {
@@ -30,7 +67,7 @@ check:any;
 
 
   getEntity(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3000/fiware/getentity", httpOptions)
+    return this.http.get("http://137.135.116.1:3001/fiware/getentity", httpOptions)
   }
 
   createEntity(payload): Observable<any> {
@@ -83,40 +120,87 @@ check:any;
 
   }
   
+  
+
+createOrionEntity(payload,variable): Observable<any> {
+    
+let attname= payload.attribute_name
+
+console.log(variable)
+
+
+let obj=[]
+for(let i=0;i<variable.length;++i){
+  obj.push(JSON.stringify({[variable[i].attName]:{type:variable[i].atttype}}))
+
+  }
+
+console.log(typeof(payload.id))
+let n =variable.length
+let data1 ='{"id":'+'"'+payload.id+'"'+',"type":'+'"'+payload.type+'"'+','
+for(let i=0;i<variable.length;++i){
+data1+=obj[i].slice(1,obj[i].length-1)+','
+}
+
+
+
+
+/*  let  data=
+    {
+        "id": payload.id,
+            "type": payload.type,
+            [payload.attribute_name] :{           
+              "type": payload.attribute_type
+            }
+    
+  }
+  */
+data1=data1.slice(0,-1)
+data1=data1+'}'
+console.log(data1)
+data1 = JSON.stringify(data1)
+let data = JSON.parse(data1)
+  console.log(data)
+
+     return this.http.post("http://137.135.116.1:3001/fiware/orion/createentity",(data) ,httpOptionsfirebase)
+    }
+
+
+
 
 
   getNorthWeatherStation(): Observable<any> {
   //  return this.http.get("http://137.135.116.1:3000/fiware/northweatherstation",httpOptionsStateWeatherDepartment)
-   return this.http.get("http://20.197.62.1:3000/v2/entities/urn:ngsi-ld:NorthWeatherStation", httpOptionsStateWeatherDepartment)
+   return this.http.get("http://20.197.62.1:3001/v2/entities/urn:ngsi-ld:NorthWeatherStation", httpOptionsStateWeatherDepartment)
   }
 
   getNorthWeatherStationfromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3000/fiware/northweatherstation", httpOptions)
+    return this.http.get("http://137.135.116.1:3001/fiware/northweatherstation", httpOptions)
   }
 
   getNorthWeatherStationfromnodeserverofcunus(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3000/fiware/cynus", httpOptions)
+    return this.http.get("http://137.135.116.1:3001/fiware/cynus", httpOptions)
   }
 
   getTemperatureNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3000/fiware/cynus/temperature", httpOptions)
+    return this.http.get("http://137.135.116.1:3001/fiware/cynus/temperature", httpOptions)
   }
   getHumidityNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3000/fiware/cynus/humidity", httpOptions)
+    return this.http.get("http://137.135.116.1:3001/fiware/cynus/humidity", httpOptions)
   }
 
   getAirQualityNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3000/fiware/cynus/airquality", httpOptions)
+    return this.http.get("http://137.135.116.1:3001/fiware/cynus/airquality", httpOptions)
   }
 
   getWindSpeedNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3000/fiware/cynus/windspeed", httpOptions)
+    return this.http.get("http://137.135.116.1:3001/fiware/cynus/windspeed", httpOptions)
   }
 
 
 
   getSouthWeatherStationfromnodeserver(): Observable<any> {
-    return this.http.get("http://localhost:3000/fiware/southweatherstation", httpOptions)
+    return this.http.get("http://localhost:3001/fiware/southweatherstation", httpOptions)
   }
 
 
@@ -172,6 +256,11 @@ getGkitchenToasterStatus(): Observable<any> {
 setGkitchenToasterStatus(payload): Observable<any> {
   return this.http.put("https://iotapp-aad4a.firebaseio.com/gkitchen/Toaster.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", payload,httpOptionsfirebase)
 }
+
+
+
+
+
 
 
 }

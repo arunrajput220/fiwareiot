@@ -1,0 +1,330 @@
+
+<ion-header >
+  <ion-toolbar class="myback">
+    <ion-buttons slot="start">
+  <!--    <ion-back-button defaultHref="home"></ion-back-button>-->
+    </ion-buttons>
+ <!--   <ion-title>{{title}}</ion-title>-->
+ <ion-title>Control Panel</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="iconsize" (click)="alertmsg()">
+        <ion-icon slot="icon-only" ios="notifications-outline" md="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button >
+        <ion-icon class="iconsize" slot="icon-only" ios="person-circle-outline" md="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-card class="ion-card-design" [color]="televisionstatus==0?'medium':(data==1?'warning':'success')" >
+            <ion-item>
+              <ion-label >
+                {{televisiondisplay}}
+              </ion-label>
+                <ion-toggle [(ngModel)]="televisionstatus" (click)="setTelevisionStatus()"slot="end" checked>
+                </ion-toggle>
+            </ion-item>
+                               
+            <ion-card-header>
+              <ion-card-subtitle class="cardalign">Television
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="6" style="left:23%;">
+                      <ion-img style="width :100%; height :100%"  src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Ftelevision.png?alt=media&token=6f47dd0c-6b36-4202-a54b-6ac5f455b4b0">
+                      </ion-img>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-subtitle>
+              <ion-card-title class="fontsize" >
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      <!----------------------------------------Buttton 1 Close-->
+      <!----------------------------------------Buttton 2 Start-->
+                             
+      <ion-col size="2">
+        <ion-card class="ion-card-design" [color]="airconditionerstatus==0?'medium':(data==1?'warning':'success')" >
+          <ion-item>
+            <ion-label >
+              {{airconditionerdisplay}}
+            </ion-label>
+              <ion-toggle [(ngModel)]="airconditionerstatus" (click)="setAirConditionerStatus()"slot="end" checked>
+              </ion-toggle>
+          </ion-item>
+                             
+          <ion-card-header>
+            <ion-card-subtitle class="cardalign">
+              Air Conditioner
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="6" style="left:23%;">
+                    <ion-img style="width :100%; height :100%"  src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fair-conditioner.png?alt=media&token=8957a36f-c1a3-4c9d-8177-d6b04d4cbe5f">
+                    </ion-img>                 
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-subtitle>
+            <ion-card-title class="fontsize" >
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>                                 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+  <ion-col size="2">
+    <ion-card class="ion-card-design" [color]="refrigratorstatus==0?'medium':(data==1?'warning':'success')" >
+      <ion-item>
+        <ion-label >
+          {{refrigratordisplay}}
+        </ion-label>
+          <ion-toggle [(ngModel)]="refrigratorstatus" (click)="setRefrigratorStatus()"slot="end" checked>
+          </ion-toggle>
+      </ion-item>
+                         
+      <ion-card-header>
+        <ion-card-subtitle class="cardalign">Refrigrator
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" style="left:23%;">
+                <ion-img style="width :100%; height :100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Frefrigerator.png?alt=media&token=47d75344-4a2e-407a-ab41-d5ec859492a9">
+                </ion-img>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-subtitle>
+        <ion-card-title class="fontsize" >
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ion-col>
+<!----------------------------------------Buttton 1 Close-->
+<!----------------------------------------Buttton 2 Start-->
+                       
+<ion-col size="2">
+  <ion-card class="ion-card-design" [color]="juicerstatus==0?'medium':(data==1?'warning':'success')" >
+    <ion-item>
+      <ion-label >
+        {{juicerdisplay}}
+      </ion-label>
+        <ion-toggle [(ngModel)]="juicerstatus" (click)="setJuicerStatus()"slot="end" checked>
+        </ion-toggle>
+    </ion-item>
+                       
+    <ion-card-header>
+      <ion-card-subtitle class="cardalign">
+        Juicer
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" style="left:23%;">
+              <ion-img style="width :100%; height :100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fblender.png?alt=media&token=3ed621fb-eaf7-4287-b2e9-373b0322a446">
+              </ion-img>                 
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-subtitle>
+      <ion-card-title class="fontsize" >
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-col>                                 
+<!----------------------------------------Buttton 2 Close______________________________
+</ion-row>
+</ion-grid>                   -->
+<!--Two Button template  END---------------------------------------------------->
+
+
+
+
+<!--Two Button template  Start--------------------------------------------------
+<ion-grid>
+<ion-row>-->
+<!----------------------------------------Buttton 1 Start-->
+<ion-col size="2">
+  <ion-card class="ion-card-design" [color]="speakerstatus==0?'medium':(data==1?'warning':'success')" >
+    <ion-item>
+      <ion-label >
+        {{speakerdisplay}}
+      </ion-label>
+        <ion-toggle [(ngModel)]="speakerstatus" (click)="setSpeakerStatus()"slot="end" checked>
+        </ion-toggle>
+    </ion-item>
+                       
+    <ion-card-header>
+      <ion-card-subtitle class="cardalign">
+        Speakers
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" style="left:23%;">
+              <ion-img style="width :100%; height :100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fspeaker.png?alt=media&token=70793df5-85db-4d95-8d76-2ffe00b84a73">
+              </ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-subtitle>
+      <ion-card-title class="fontsize" >
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-col>
+<!----------------------------------------Buttton 1 Close-->
+<!----------------------------------------Buttton 2 Start-->
+                     
+<ion-col size="2">
+<ion-card class="ion-card-design" [color]="microwaveovenstatus==0?'medium':(data==1?'warning':'success')" >
+  <ion-item>
+    <ion-label >
+      {{microwaveovendisplay}}
+    </ion-label>
+      <ion-toggle [(ngModel)]="microwaveovenstatus" (click)="setMicrowaveOvenStatus()"slot="end" checked>
+      </ion-toggle>
+  </ion-item>
+                     
+  <ion-card-header>
+    <ion-card-subtitle class="cardalign"> Oven
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" style="left:23%;">
+            <ion-img style="width :100%; height :100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fmicrowave.png?alt=media&token=890a1de7-311f-4166-b84e-13b28462d569">
+            </ion-img>                 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-subtitle>
+    <ion-card-title class="fontsize" >
+    </ion-card-title>
+  </ion-card-header>
+</ion-card>
+</ion-col>                                 
+<!----------------------------------------Buttton 2 Close______________________________
+</ion-row>
+</ion-grid>                   -->
+<!--Two Button template  END---------------------------------------------------->
+
+
+
+<!--Two Button template  Start--------------------------------------------------
+<ion-grid>
+<ion-row>-->
+<!----------------------------------------Buttton 1 Start-->
+<ion-col size="2">
+  <ion-card class="ion-card-design" [color]="fanstatus==0?'medium':(data==1?'warning':'success')" >
+    <ion-item>
+      <ion-label >
+        {{fandisplay}}
+      </ion-label>
+        <ion-toggle [(ngModel)]="fanstatus" (click)="setFanStatus()"slot="end" checked>
+        </ion-toggle>
+    </ion-item>
+                       
+    <ion-card-header>
+      <ion-card-subtitle class="cardalign">Fan
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" style="left:23%;">
+              <ion-img style="width :100%; height :100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Flamp.png?alt=media&token=cdc0b9d5-e9da-466d-b515-ab469e6c431a">
+              </ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-subtitle>
+      <ion-card-title class="fontsize" >
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-col>
+<!----------------------------------------Buttton 1 Close-->
+
+<ion-col size="2">
+<ion-card class="ion-card-design" [color]="toasterstatus==0?'medium':(data==1?'warning':'success')" >
+  <ion-item>
+    <ion-label >
+      {{toasterdisplay}}
+    </ion-label>
+      <ion-toggle [(ngModel)]="toasterstatus" (click)="setToasterStatus()"slot="end" checked>
+      </ion-toggle>
+  </ion-item>
+                     
+  <ion-card-header>
+    <ion-card-subtitle class="cardalign">Toaster
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" style="left:23%;">
+            <ion-img style="width :100%; height :100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Ftoaster.png?alt=media&token=d6f25044-8d8c-4979-8c43-1ca1c64a11c4">
+            </ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-subtitle>
+    <ion-card-title class="fontsize" >
+    </ion-card-title>
+  </ion-card-header>
+</ion-card>
+</ion-col>
+<!----------------------------------------Buttton 2 Start-->
+                     
+<ion-col size="2">
+<ion-card class="ion-card-design" [color]="lightsstatus==0?'medium':(data==1?'warning':'success')" >
+  <ion-item>
+    <ion-label >
+      {{lightsdisplay}}
+    </ion-label>
+      <ion-toggle [(ngModel)]="lightsstatus" (click)="setLightsStatus()"slot="end" checked>
+      </ion-toggle>
+  </ion-item>
+                     
+  <ion-card-header>
+    <ion-card-subtitle class="cardalign">Lights
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" style="left:23%;">
+            <ion-img style="width :100%; height :100%" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Ffluorescent-light.png?alt=media&token=5e139b46-2f8b-425e-aefc-d17314d5d079">
+            </ion-img>                 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-subtitle>
+    <ion-card-title class="fontsize" >
+    </ion-card-title>
+  </ion-card-header>
+</ion-card>
+</ion-col>                           
+
+</ion-row>
+</ion-grid>
+
+</ion-content>

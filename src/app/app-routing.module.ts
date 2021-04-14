@@ -46,6 +46,38 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'corionentity',
+    loadChildren: () => import('./corionentity/corionentity.module').then( m => m.CorionentityPageModule)
+  },
+  {
+    path: 'datavisualize',
+    loadChildren: () => import('./datavisualize/datavisualize.module').then( m => m.DatavisualizePageModule)
+  },
+  {
+    path: 'idm',
+    loadChildren: () => import('./idm/idm.module').then( m => m.IdmPageModule)
+  },
+  {
+    path: 'test',
+    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+  },
+  {
+    path: 'datavis',
+    loadChildren: () => import('./datavis/datavis.module').then( m => m.DatavisPageModule)
+  },
+  {
+    path: 'dashtest',
+    loadChildren: () => import('./dashtest/dashtest.module').then( m => m.DashtestPageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'controlpanel',
+    loadChildren: () => import('./controlpanel/controlpanel.module').then( m => m.ControlpanelPageModule)
   }
 ];
 

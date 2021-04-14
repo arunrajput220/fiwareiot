@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Asset Managment</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content  >  
+ 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="assetcreation()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+
+  <div class="splitright">
+    <p></p>
+    
+    jbkjbjbkjbjbkj
+    
+        <div class="centered">
+    
+          
+         
+        <ion-avatar slot="start">
+          <img src="">
+        </ion-avatar>
+          <ion-card  >
+        <ion-button  color="success" (click)="updateValueFunc(i.id,i.vname,i.vunit)"  >Edit</ion-button>
+        <ion-button  color="primary"  [routerLink]="['/displaydata']" (click)="datatranfer(i.id,i.vname,i.vunit)">Properties</ion-button>
+        <ion-button  color="danger" (click)="confirmDelete(i.id)" >Delete</ion-button>
+         
+            <ion-text color="secondary">
+              <h1>i.id</h1>
+              <h1>i.vname</h1>
+              <h1>i.vunit</h1>
+           
+            </ion-text>
+          </ion-card>
+          jfbhbgdr
+          dfgdjng
+          Arun
+        </div>
+      </div>
+    
+
+
+
+  <div class="splitleft">
+      
+    <p></p>
+      <ion-col  >
+    <!--   <ion-card class="background" [routerLink]="['/displaydata']" (click)="datatranfer(i.id,i.vname,i.vunit)">  --> 
+      <ion-card class="background"  (click)="assetbyid(i.id)">
+          <ion-card-header>
+            <ion-card-title >i.vname</ion-card-title>
+            <ion-card-subtitle><b>Location :</b>New Delhi</ion-card-subtitle>
+            <ion-card-subtitle><b>Region : </b>Mayur Vihar</ion-card-subtitle>
+          </ion-card-header>
+          
+         </ion-card>
+         </ion-col>
+      
+    <div class="centered">
+     jbjbksjgvk
+     rgjerbge
+     rgierbger
+     regnuiergber
+     gernnugerogpe
+     ergnioergnreguer
+     rehguerohn
+    </div>
+  </div>
+  
+  
+  
+
+    
+  
+</ion-content>

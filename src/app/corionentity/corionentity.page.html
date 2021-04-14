@@ -1,0 +1,233 @@
+<ion-header>
+  <ion-toolbar class="myback1" >
+    <ion-buttons slot="start">
+      <ion-back-button (click)="entityManagerPageroute()"></ion-back-button>
+    </ion-buttons>
+    <ion-title ><b><b>Create Entity </b></b></ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="alertmsg()">
+        <ion-icon slot="icon-only"name="notifications">
+        </ion-icon>
+        <ion-badge  color="primary">{{alertcount}}</ion-badge>
+      </ion-button> 
+
+      <ion-button style=" font-size: 17px" (click)="userDetails()" >
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
+      
+      <ion-button class="iconsize" (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      </ion-button>
+     
+    
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="background">
+
+
+<!--
+  <ion-list lines="none">
+    <form [formGroup]="myForm">
+      <ion-item *ngFor="let control of myForm.controls | keyvalue">
+        <ion-input required type="text" formControlName="attribute_name" placeHolder="player name..."></ion-input>
+        <ion-input required type="text" formControlName="atrributr_object" placeHolder="player name..."></ion-input>
+        <ion-icon (click)="removeControl(control)" name="close-circle"></ion-icon>
+      </ion-item>
+    </form>
+  </ion-list>
+  <ion-button expand="full" color="light" (click)="addControl()">Add Player</ion-button>
+
+
+-->
+
+
+  
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+   <br>
+
+<ion-grid>
+  <ion-row>
+
+    <ion-col size="5" style="left: 35%;" >
+
+      <h2 style="color: white;"><b>Create Fiware IoT Entity</b></h2>
+      </ion-col>
+
+<ion-col size="2.15" style="left: 41%;" >
+
+<ion-button (click)="onCancel()" color="medium">Cancel</ion-button>
+ <ion-button class="submit-btn" type="submit"vertical="top" horizontal="end" >Create</ion-button>
+
+</ion-col>
+</ion-row>
+
+</ion-grid>
+
+
+
+
+<ion-card >
+<h6>Entity Information</h6>
+    <ion-item style="left:5%; width:35%;">
+      <ion-label position="floating" color="primary">Device Id</ion-label>
+      <ion-input  type="text" formControlName="id"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.id">
+        <div class="error-message"
+          *ngIf="validations_form.get('id').hasError(validation.type) && (validations_form.get('id').dirty || validations_form.get('id').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+   
+
+    <ion-item  style="left:5%; width:35%;">
+      <ion-label position="floating" color="primary">Entity Type</ion-label>
+      <ion-input type="text" formControlName="type" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.type">
+        <div class="error-message"
+          *ngIf="validations_form.get('type').hasError(validation.type) && (validations_form.get('type').dirty || validations_form.get('type').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+
+  </ion-card> 
+      
+
+<!--
+<ion-card>
+  <h4>Entity Atrributes Information</h4> <ion-fab vertical="top" horizontal="end" >
+    <ion-fab-button (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+    <ion-item> 
+    
+      <ion-input type="text" placeHolder="Atrribute Name..." [(ngModel)]="attname"  required></ion-input>
+      <ion-input type="text" placeHolder="Atrribute Type..." [(ngModel)]="atttype"  required></ion-input>
+    </ion-item>
+   
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.attribute_name">
+        <div class="error-message"
+          *ngIf="validations_form.get('attribute_name').hasError(validation.type) && (validations_form.get('attribute_name').dirty || validations_form.get('attribute_name').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+  </ion-card>
+-->
+ <!--   <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Register</ion-button>   -->
+ 
+  </form>
+ 
+
+
+  <ion-card>
+  <h6>Entity Atrributes Information</h6> <ion-fab vertical="top" horizontal="end" >
+    <ion-fab-button (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+    <ion-item> 
+    
+      <ion-input type="text" placeHolder="Atrribute Name..." [(ngModel)]="attname"  required></ion-input>
+      <ion-input type="text" placeHolder="Atrribute Type..." [(ngModel)]="atttype"  required></ion-input>
+    </ion-item>
+</ion-card>
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="2" *ngFor="let i of attributes" >
+      <ion-card>
+        <ion-card-header>
+         
+          <ion-card-title>Atrribute</ion-card-title>
+          <ion-buttons >
+            <ion-button (click)="alertmsg()">
+              <ion-icon slot="icon-only"name="notifications">
+              </ion-icon>
+              <ion-badge  color="primary">{{alertcount}}</ion-badge>
+            </ion-button> 
+      
+            <ion-button style=" font-size: 17px" (click)="userDetails()" >
+              <ion-icon name="person"></ion-icon>
+            </ion-button>
+            
+            <ion-button class="iconsize" (click)="logout()">
+              <ion-icon slot="end" name="log-out-outline"></ion-icon>
+            </ion-button>
+           
+          
+          </ion-buttons>
+          <ion-card-subtitle> {{i.attName}}</ion-card-subtitle>
+          <ion-card-subtitle>{{i.atttype}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Keep
+        </ion-card-content>
+      </ion-card>
+  
+
+</ion-col>
+</ion-row>
+
+</ion-grid>
+
+
+
+<!--
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let i of attributes">
+      <div>
+      
+        {{i.attName}}
+      </div>
+    ............
+      
+        {{i.atttype}}
+      
+    </ion-col>
+  </ion-row>
+  
+</ion-grid>
+
+<ion-grid>
+  <ion-row>
+    <ion-col style="left: 100px;">
+<ion-card >
+  <table style="width:100%;">
+    
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+    </tr>
+  
+    <ion-item *ngFor="let i of attributes ">
+      
+      <td  >{{i.attName}}</td>
+      <td >{{i.atttype}}</td>
+    </ion-item>  
+  </table>
+</ion-card> 
+</ion-col>
+</ion-row>
+
+</ion-grid>-->
+  
+</ion-content> 
+
+

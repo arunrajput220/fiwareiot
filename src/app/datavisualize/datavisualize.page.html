@@ -5,7 +5,7 @@
   </ion-buttons>
   <ion-toolbar class="myback1" >
    
-    <ion-title ><b><b>Entity Manager</b></b></ion-title>
+    <ion-title ><b><b>Data Visulizer</b></b></ion-title>
     <ion-buttons  slot="end">
       <ion-button (click)="alertmsg()">
         <ion-icon slot="icon-only"name="notifications">
@@ -29,14 +29,8 @@
 </ion-header>
 
 <ion-content class="background">
-  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button (click)="createEntityPageroute()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 
-
-
+<!--
   <ion-row>
     <ion-col size="3"  *ngFor="let i of data1 ">
       <ion-card  color="success" >
@@ -50,6 +44,44 @@
        </ion-card>
        </ion-col>
   </ion-row>
+
+
+-->
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size="2"   *ngFor="let i of data1 ">
+        <ion-card class="ion-card-design" color="" (click)="presentModal(i.id,i.type)">
+          <ion-card-header style="text-align: center;">
+            
+            <div class="div1">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="3">
+                    </ion-col>
+                    <ion-col size="5">
+                      <ion-img width="10" height="10px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqBN4A6V8-zmbaPbzpVASc7RHal8c7sI-q23E04tF1Zup4NPxfePurGBhAoZDFE-cEiII&usqp=CAU">
+                    </ion-img>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <ion-card-subtitle class="cardalign" (click)="deviceData(1)">
+              {{i.id}}
+              <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
+              </ion-icon>  
+            </ion-card-subtitle>
+          <ion-card-title class="fontsize" [color]="data>30?'danger':(data>18?'success':'warning')" >
+            {{humditydata}}
+          </ion-card-title>
+          {{i.type}}
+        </ion-card-header>
+        </ion-card>
+      </ion-col>
+  
+</ion-row>
+</ion-grid>
 
 
    <!--  <ion-item>

@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public appPages = [
     {
+      title: 'Home',
+      url: '/home',
+      icon: 'home'
+    },
+    {
       title: 'Dashboard',
       url: '/dashboard',
       icon: 'stats-chart'
@@ -16,6 +21,26 @@ export class AppComponent {
       url: '/entitymanager',
       icon: 'speedometer'
     },
+    {
+      title: 'Data Visulizer',
+      url: '/datavisualize',
+      icon: 'bar-chart'
+    },  
+      {
+      title: 'Identity Manger',
+      url: '/idm',
+      icon: 'shield-half'
+    },  
+    {
+      title: 'WireCloud Visulizer',
+      url: '/idm',
+      icon: 'dice'
+    },
+    {
+      title: 'Control Panel',
+      url: '/controlpanel',
+      icon: 'toggle'
+    },
 
     
     {
@@ -23,6 +48,8 @@ export class AppComponent {
       url: '/account',
       icon: 'person'
     },
+    
+    
     {
       title: 'IoT Platform Support',
       url: '/main',
@@ -37,8 +64,15 @@ export class AppComponent {
       title: 'Support',
       url: '/support',
       icon: 'build'
+    },
+    {
+      title: 'Test Page',
+      url: '/test',
+      icon: 'dice'
     }
   ];
   public labels = ['AtoS Fiware POC Application'];
   constructor() {}
+
+ 
 }

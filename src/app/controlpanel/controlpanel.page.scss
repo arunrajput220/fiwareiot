@@ -50,7 +50,7 @@
     font-size: 16px;
     line-height: 22px;
   
-    color: #8B8B81;
+    color: #8c8c8c;
   
     margin: 0;
   }
@@ -60,22 +60,19 @@
   }
   
   .myback{
-  //  --background: #8B8B81;
-  --background: Primary;
-
-    color: #312b2b;
-    }
-  
-    
-  .myback1{
     --background: #075e54;
     color: #F5F5F5;
     }
   
+    
+  .myback1{
+    --background: #3caa9d;
+    color: #F5F5F5;
+    }
+  
     .background{
-    // --background: #fff url("../../assets/images/23.jpg") no-repeat center center;
-    // --background:#8B8B81;
-    --background: #fff url("../../assets/images/223.jpg") no-repeat center center;
+     --background: #fff url("../../assets/images/223.jpg") no-repeat center center;
+    // --background:#c7d4ca;
      }
   
   
@@ -112,6 +109,9 @@
         text-align: center;
        // color:white ;
         }
+        .ion-card-design {
+          border-radius: 20px;
+          }
 
 
 .chart{
@@ -124,69 +124,6 @@
 
 
   .iconsize{
-    font-size: 20px; //Preferred size here
+    font-size: 30px; //Preferred size here
+    color: #F5F5F5;
 }
-
-#notification-button {            
-  position: relative;
-  width: 42px;
-  top:1px;
-  right: 1px;
-  overflow: visible!important;
-}
-
-#notifications-badge {
-  background-color: red;
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  border-radius: 100%;
-}
-ion-button {
-	ion-badge {
-		position: absolute;
-		top: -0.6rem;
-		right: -0.4rem;
-    
-		opacity: 0.9;
-
-		& ~ ion-icon {
-			margin-right: 2rem;
-		}
-	}
-}
-
-
-.graph{
-  --background: #128C7E;
-  color:#F8F8F8;
-  text-align:center;
-  }
-  .splitleft{
-    top:10%;
-    left: 0%;
-    height: 100%;
-    width: 20%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
-    border: yellow 20px;
-    background:rgb(111, 141, 111);
-
-  }
-  .splitright{
-    left: 20%;
-    height: 100%;
-    width: 80%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
-    background:rgb(85, 87, 85);
-  }
-
-
-

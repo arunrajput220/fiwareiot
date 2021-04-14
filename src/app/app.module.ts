@@ -1,4 +1,4 @@
-import { ErrorHandler,NgModule } from '@angular/core';
+import { ErrorHandler,NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -15,19 +15,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 //import { ChartistComponent } from "ng-chartist/lib/chartist.component";
 
 @NgModule({
   declarations: [AppComponent],
+  
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ChartistModule,
     NgxGaugeModule,
     HttpClientModule,
 ReactiveFormsModule,
 FormsModule,
-
+NgxDatatableModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
