@@ -32,8 +32,8 @@ export class AppComponent {
       icon: 'shield-half'
     },  
     {
-      title: 'WireCloud Visulizer',
-      url: '/idm',
+      title: 'WireCloud Platform',
+      url: '/wirecloud',
       icon: 'dice'
     },
     {
@@ -49,12 +49,7 @@ export class AppComponent {
       icon: 'person'
     },
     
-    
-    {
-      title: 'IoT Platform Support',
-      url: '/main',
-      icon: 'pulse'
-    },
+
     {
       title: 'About Developer',
       url: '/aboutdeveloper',
@@ -65,11 +60,18 @@ export class AppComponent {
       url: '/support',
       icon: 'build'
     },
+    /*
+    {
+      title: 'IoT Platform Support',
+      url: '/main',
+      icon: 'pulse'
+    },
     {
       title: 'Test Page',
       url: '/test',
       icon: 'dice'
     }
+    */
   ];
   public labels = ['AtoS Fiware POC Application'];
   constructor() {}

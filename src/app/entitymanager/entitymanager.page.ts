@@ -23,6 +23,9 @@ export class EntitymanagerPage implements OnInit {
 
   ngOnInit() {
   }
+  logout(){
+    this.router.navigateByUrl('login');
+  }
 
   
   async allEntities(){

@@ -28,6 +28,9 @@ export class DatavisualizePage implements OnInit {
   ngOnInit() {
   }
 
+  logout(){
+    this.router.navigateByUrl('login');
+  }
 
   async presentModal(val1,val2) {
     DatavisPage.prototype.getval(val1,val2)

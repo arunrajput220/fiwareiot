@@ -152,7 +152,9 @@ export class CorionentityPage implements OnInit {
     removeControl(control){
       this.myForm.removeControl(control.key);
     }
-  
+    logout(){
+      this.router.navigateByUrl('login');
+    }
   
   async  tryRegister(value) {
 

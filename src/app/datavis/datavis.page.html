@@ -5,7 +5,7 @@
   </ion-buttons>
   <ion-toolbar class="myback1" >
    
-    <ion-title ><b><b>Data Visulizer</b></b></ion-title>
+    <ion-title ><b><b>{{realtimedataen}} Data Visulizer</b></b></ion-title>
     <ion-buttons  slot="end">
       <ion-button (click)="cancel()">
         <ion-icon slot="icon-only"name="">
@@ -68,7 +68,7 @@
      <ion-col  col-12 col-xl-2 col-lg-3 col-md-4>
     <ion-card>
       <ion-item class="graph">
-        Temperature Data Graph
+        {{realtimedataen}} Data Graph
         <ion-buttons slot="end">
             <ion-button (click)="presentPopover()">
               <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline"></ion-icon>

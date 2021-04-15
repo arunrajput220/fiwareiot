@@ -78,6 +78,10 @@ const routes: Routes = [
   {
     path: 'controlpanel',
     loadChildren: () => import('./controlpanel/controlpanel.module').then( m => m.ControlpanelPageModule)
+  },
+  {
+    path: 'wirecloud',
+    loadChildren: () => import('./wirecloud/wirecloud.module').then( m => m.WirecloudPageModule)
   }
 ];
 

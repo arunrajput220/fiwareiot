@@ -125,6 +125,7 @@ console.log(this.data)
           .subscribe(res => { 
             console.log(res)
             this.data.push(res[res.length-1])
+            this.data.push(res[res.length-2])
            
         loading.dismiss();
       }, err => {
