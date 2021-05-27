@@ -79,14 +79,38 @@
   
     .background{
     // --background: #fff url("../../assets/images/23.jpg") no-repeat center center;
-    // --background:#8B8B81;
-    --background: #fff url("../../assets/images/223.jpg") no-repeat center center;
+  // --background:#116466;
+  // --background:#f0f0f0d0;
+  --background:#f7f7f7d0;
+   // --background: #fff url("../../assets/images/223.jpg") no-repeat center center;
      }
   
-  
+     table {
+      width: 90%;
+      background-color: rgb(221, 226, 226);
+     left: 30%;
+    }
+    
+    .mat-form-field {
+      font-size: 14px;
+      width: 100%;
+     
+      
+    }
+    
+    td, th {
+      width: 25%;
+      text-align: center;
+     
+    }
+
+
+    .mat-form-field + .mat-form-field {
+      margin-left: 8px;
+    }
   
   .ion-card-design {
-    border-radius: 20px;
+    border-radius: 20%;
    // --background:  #353838;
     font-weight: bold;
     text-align: center;
@@ -187,4 +211,16 @@ ion-button {
                   th {
                     text-align: left;
                   }
-                  
+.bor{
+  border: 40px;
+}  
+.test{
+  right:150px;
+  
+}   
+
+
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+

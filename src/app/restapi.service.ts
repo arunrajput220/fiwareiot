@@ -26,6 +26,57 @@ param:any;
 
   constructor(public http: HttpClient) { }
 
+  geteuphrydata(location_id,profile_id){
+    var payload = {"locationid":location_id, "profileid": profile_id} 
+    
+    var link ="http://localhost:3000/euphrydata/"+location_id+"/"+profile_id
+    console.log(link)
+   // window.open('http://13.232.236.50/demo-ops-panel ');
+    return  this.http.get(link,httpOptionsfirebase)
+
+  }
+
+  getdataeuphry(): Observable<any>{
+  
+      let url ="http://localhost:3000/euphrydata"
+      console.log(url)
+       return this.http.get(url, httpOptionsfirebase)  
+  }
+
+  dataloggerstatus(): Observable<any>{
+  
+    let url ="http://localhost:3000/datalogger/status"
+    console.log(url)
+     return this.http.get(url, httpOptionsfirebase)  
+}
+
+
+
+  loginUser(value){
+    // console.log(value.email)
+    // console.log(value.password)
+    var payload = {"email":"oscar.ledesma@atos.net", "password": "vaccine00","remenber":true} 
+    console.log(payload)
+   
+   // window.open('http://13.232.236.50/demo-ops-panel ');
+    return  this.http.post("https://vaccine.eupry.com/api/login", payload,httpOptionsfirebase)
+
+  }
+
+  opspanel(){
+    // console.log(value.email)
+    // console.log(value.password)
+    var payload = JSON.stringify({
+      "username": "arun",
+      "password": "test"
+    }) 
+    console.log(payload)
+    return this.http.post("http://13.232.236.50/demo-ops-panel", payload,httpOptionsfirebase)
+  }
+
+
+
+
 
   cygusparamset(val){
 this.param =val
@@ -35,6 +86,14 @@ this.param =val
    console.log(url)
     return this.http.get(url, httpOptionsfirebase)
   }
+
+
+
+  getEntityinfo(ename): Observable<any> {
+    let url ="http://137.135.116.1:3001/fiware/orion/getentity/"+ename
+    console.log(url)
+     return this.http.get(url, httpOptionsfirebase)
+   }
 
 
   
@@ -259,7 +318,45 @@ setGkitchenToasterStatus(payload): Observable<any> {
 
 
 
+//----------------------------------------------------------------------
 
+
+getLightIntensityData(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/lightintensity.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
+
+getPowerBackupData(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/powerbackup.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
+
+getWaterTankData(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/watertank.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
+
+
+getAirQualityData(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/airquality.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
+
+setTelevisionValue(payload): Observable<any> {
+  return this.http.put("https://iotapp-aad4a.firebaseio.com/ldr.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", payload,httpOptions)
+}
+getldrDataValue(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/ldr.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
+
+getTemperatureTimeSeries(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/temperature.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
+getHumidityTimeSeries(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/humidity.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
+getAirQualityTimeSeries(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/airquality.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
+getDistanceTimeSeries(): Observable<any> {
+  return this.http.get("https://iotapp-aad4a.firebaseio.com/distance.json?auth=o94DBUv8yCSRRI2NNYv4bHIQmvmheQBTnoOkhhjt", httpOptions)
+}
 
 
 

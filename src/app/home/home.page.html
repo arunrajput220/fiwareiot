@@ -1,32 +1,48 @@
+<ion-header>
+  <ion-toolbar class="myback1"> 
+    <ion-buttons  slot="start">
 
+      <ion-button  (click)="menuctlfun()" style="padding-left: 0%;">
+        <ion-icon slot="end" name="menu"></ion-icon>
+       
+      </ion-button>
+      
+      </ion-buttons>
+      <ion-buttons  slot="end">
+        
+  
+        <ion-button style=" font-size: 17px" (click)="userDetails()" >
+          <ion-icon name="person"></ion-icon>
+        </ion-button>
+        
+        <ion-button class="iconsize" (click)="logout()">
+          <ion-icon slot="end" name="log-out-outline"></ion-icon>
+        </ion-button>
+       
+      
+      </ion-buttons>
+    </ion-toolbar>    
+</ion-header>
 
 <ion-content class="background">
 
   <div class=""> 
     <div class="">
 
-      <ion-card style="font-weight: bold;font-size: 38px; position:absolute; top:75%; width:520px; height:70px ;margin: 10px;opacity: 0.9;color:white;background: transparent;">
-         
-        <ion-card-header>
+      <div style="font-style: italic   ;font-weight: bold;font-size: 42px;left: 520px; position:absolute; top:20px; width:520px; height:70px;color:rgb(231, 227, 227);">
+   
         AtoS Smart City PoC
-        </ion-card-header>
-        <ion-card-content>
+        
       
-        </ion-card-content>
-      
-      </ion-card>
+      </div>
     <!-- <img src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Farun.jpg?alt=media&token=c5ab92a5-6023-419b-ae87-257a8b8e501c" [alt]="Arun">
    --> 
-   <ion-card style="font-size: 19px; position:absolute; top:78%;left:6%; width:520px; height:70px ;margin: 30px;opacity: 0.9;color:white;background: transparent;">
-         
-    <ion-card-header>
+   <div style="font-size: 20px; position:absolute; top:32px;left:600px; width:520px; height:70px ;margin: 30px;opacity: 0.9;color:white;background: transparent;">
+    
     Powered by Fiware
-    </ion-card-header>
-    <ion-card-content>
+   
   
-    </ion-card-content>
-  
-  </ion-card>  
+  </div>  
     
     </div>
     </div>

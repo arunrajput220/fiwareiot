@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>datalogger</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-header>
+ <h2>Data Loggers</h2>
+ 
+  <ion-chip *ngFor="let i of sensorinfo" >
+    <ion-label color="secondary" (click)="geteuphrydata(i.location_id,i.profile_id)"> {{i.device_name}}</ion-label>
+  </ion-chip>
+     
+</ion-header>
+
+
+<ion-content>
+
+
+ 
+  
+
+
+<div id="linechart">
+  <apx-chart
+    [series]="linechartOptions.series"
+    [chart]="linechartOptions.chart"
+    [xaxis]="linechartOptions.xaxis"
+    [stroke]="linechartOptions.stroke"
+    [colors]="linechartOptions.colors"
+    [dataLabels]="linechartOptions.dataLabels"
+    [legend]="linechartOptions.legend"
+    [markers]="linechartOptions.markers"
+    [grid]="linechartOptions.grid"
+    [yaxis]="linechartOptions.yaxis"
+    [title]="linechartOptions.title"
+  ></apx-chart>
+</div>
+
+
+ 
+
+
+</ion-content>

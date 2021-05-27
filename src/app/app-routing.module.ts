@@ -82,6 +82,42 @@ const routes: Routes = [
   {
     path: 'wirecloud',
     loadChildren: () => import('./wirecloud/wirecloud.module').then( m => m.WirecloudPageModule)
+  },
+  {
+    path: 'entityinfo',
+    loadChildren: () => import('./entityinfo/entityinfo.module').then( m => m.EntityinfoPageModule)
+  },
+  {
+    path: 'mypage',
+    loadChildren: () => import('./mypage/mypage.module').then( m => m.MypagePageModule)
+  },
+  {
+    path: 'myvaccdash',
+    loadChildren: () => import('./myvaccdash/myvaccdash.module').then( m => m.MyvaccdashPageModule)
+  },
+  {
+    path: 'maindash',
+    loadChildren: () => import('./maindash/maindash.module').then( m => m.MaindashPageModule)
+  },
+  {
+    path: 'receivevacc',
+    loadChildren: () => import('./receivevacc/receivevacc.module').then( m => m.ReceivevaccPageModule)
+  },
+  {
+    path: 'createfiwareentity',
+    loadChildren: () => import('./createfiwareentity/createfiwareentity.module').then( m => m.CreatefiwareentityPageModule)
+  },
+  {
+    path: 'vaccinventory',
+    loadChildren: () => import('./vaccinventory/vaccinventory.module').then( m => m.VaccinventoryPageModule)
+  },
+  {
+    path: 'datalogger',
+    loadChildren: () => import('./datalogger/datalogger.module').then( m => m.DataloggerPageModule)
+  },
+  {
+    path: 'monitor',
+    loadChildren: () => import('./monitor/monitor.module').then( m => m.MonitorPageModule)
   }
 ];
 

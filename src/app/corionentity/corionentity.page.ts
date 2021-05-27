@@ -1,17 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild,AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import {Sort} from '@angular/material/sort';
 import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
 import { RestapiService } from '../restapi.service';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
+import {EntitymanagerPage} from '../entitymanager/entitymanager.page'
 
-export interface Data {
-  movies: string;
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+
+export interface UserData {
+  id: string;
+  name: string;
+  progress: string;
+  color: string;
 }
 
-
+/** Constants used to fill up our data base. */
+const COLORS: string[] = [
+  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
+  'aqua', 'blue', 'navy', 'black', 'gray'
+];
+const NAMES: string[] = [
+  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
+  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
+]; 
 @Component({
   selector: 'app-corionentity',
   templateUrl: './corionentity.page.html',
@@ -22,10 +39,17 @@ export class CorionentityPage implements OnInit {
 
 
 
+values
+displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  dataSource: MatTableDataSource<UserData>;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  panelOpenState = false;
   //-----------------------
 
-  
+  headElements=["cxgf,","jbkbk","jhgig","hjvjhg"]
 
 //--------------------
   attributes=[]
@@ -60,7 +84,7 @@ export class CorionentityPage implements OnInit {
   
     constructor(
       
-    
+      private toastr: ToastrService,
       private formBuilder: FormBuilder,
       public alertController: AlertController,
       public router: Router,
@@ -71,8 +95,41 @@ export class CorionentityPage implements OnInit {
       
     ) { 
       
-  
+      const users = Array.from({length: 100}, (_, k) => this.createNewUser(k + 1));
+
+      // Assign the data to the data source for the table to render
+      this.dataSource = new MatTableDataSource(users);
       
+
+    
+
+    }
+
+    ngAfterViewInit() {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+  
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
+    }
+
+
+
+     createNewUser(id: number): UserData {
+      const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
+          NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+    
+      return {
+        id: id.toString(),
+        name: name,
+        progress: Math.round(Math.random() * 100).toString(),
+        color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
+      };
     }
   
     ngOnInit() {
@@ -118,18 +175,75 @@ export class CorionentityPage implements OnInit {
     }
   
     add(){
+      
       if(this.attname!=''&& this.atttype!=''){
-         this.attributes.push({"attName":this.attname,"atttype":this.atttype})
+        let id =Math.random().toString(36).substr(2, 9);
+         this.attributes.push({"id":id,"attName":this.attname,"atttype":this.atttype})
          this.attname=""
          this.atttype=""
+         this.toastr.success('Added','Atrribute', {
+          timeOut: 1500,
+        });
+        console.log(this.attributes);
       }
       else{
         console.log("Enter Variables Properly")
-        this.presentToast("Attribute Name  and  Attribute Type can't be <b>Empty</b>")
+        this.toastr.warning("can't be Empty"," Attribute Name & Type ",{
+          timeOut: 1500,
+        });
       }
+      
+}
+
+edit(check){
+for(let i=0;i<this.attributes.length;++i ){
+  if(this.attributes[i].id == check){
+    this.attributes.splice(i,1)
+  }
 }
 
 
+}
+delete(check){
+  for(let i=0;i<this.attributes.length;++i ){
+    if(this.attributes[i].id == check){
+      this.attributes.splice(i,1)
+      this.toastr.info("Attribute Deleted")
+    }
+
+}
+
+}
+
+
+async confirmdel(check) {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Cnfirm Delete',
+    //subHeader: 'Subtitle',
+    message: 'Are you sure to delete the selected Attribute',
+    buttons:[ {
+      text: 'Cancel',
+      role: 'cancel',
+      cssClass: 'secondary',
+      handler: (blah) => {
+        console.log('Confirm Cancel: blah');
+      }
+    }, {
+      text: 'Okay',
+      handler: () => {
+        this.delete(check)
+        console.log('Confirm Okay');
+      }
+    }
+  ]
+  });
+
+  await alert.present();
+
+  const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
 
     addControl(){
       console.log(this.myForm.value)
@@ -166,12 +280,24 @@ export class CorionentityPage implements OnInit {
         await this.api.createOrionEntity(value,this.attributes)
           .subscribe(res => {
             console.log(res)
-            
-            
-          this.attributes=[]
+            if(res=== ''){
+              this.attributes=[]
           this.validations_form.reset()
-          this.presentToast(res)
-          this.router.navigateByUrl('entitymanager')
+              this.toastr.success('Created','Entity', {
+                timeOut: 1500,
+              });
+              EntitymanagerPage.prototype.allEntities()
+              this.router.navigateByUrl('entitymanager')
+          
+            }else{
+              this.toastr.error(res,'Entity Not Created', {
+                timeOut: 2000,
+              });
+            }
+            
+          
+          
+          
             loading.dismiss();
           }, err => {
             console.log(err);

@@ -7,11 +7,16 @@
    
     <ion-title ><b><b>Entity Manager</b></b></ion-title>
     <ion-buttons  slot="end">
+
+      <ion-button class="iconsize" (click)="allEntities()">
+        <ion-icon slot="end" name="refresh"></ion-icon>
+      </ion-button>
      
       
       <ion-button class="iconsize" (click)="logout()">
-        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+        <ion-icon slot="end" name="log-out"></ion-icon>
       </ion-button>
+     
      
     
     </ion-buttons>
@@ -30,8 +35,8 @@
 
 
   <ion-row>
-    <ion-col size="3"  *ngFor="let i of data1 ">
-      <ion-card  color="success" >
+    <ion-col size="3"  *ngFor="let i of data1">
+      <ion-card  color="success" (click)="sendEntityName(i.id)" >
         <ion-card-header>
           <ion-card-subtitle><b>{{i.type}}</b></ion-card-subtitle>
           <ion-card-title >{{i.id}}</ion-card-title>

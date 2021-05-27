@@ -35,65 +35,76 @@
 
 
 -->
+<br>
+<div style="top:60%;left: 10%;padding-left: 20px;width: 80%;font-size:xx-large;">
+ Create IoT Entity 
+   
+   
+ </div>
+ <br>
 
-
+<ion-card style="left: 10%;padding-left: 20px;width: 80%;">
   
+
+
   <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
    <br>
 
-<ion-grid>
-  <ion-row>
-
-    <ion-col size="5" style="left: 35%;" >
-
-      <h2 style="color: white;"><b>Create Fiware IoT Entity</b></h2>
-      </ion-col>
-
-<ion-col size="2.15" style="left: 41%;" >
-
-<ion-button (click)="onCancel()" color="medium">Cancel</ion-button>
- <ion-button class="submit-btn" type="submit"vertical="top" horizontal="end" >Create</ion-button>
-
-</ion-col>
-</ion-row>
-
-</ion-grid>
-
-
-
-
-<ion-card >
-<h6>Entity Information</h6>
-    <ion-item style="left:5%; width:35%;">
-      <ion-label position="floating" color="primary">Device Id</ion-label>
-      <ion-input  type="text" formControlName="id"></ion-input>
-    </ion-item>
-    <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.id">
-        <div class="error-message"
-          *ngIf="validations_form.get('id').hasError(validation.type) && (validations_form.get('id').dirty || validations_form.get('id').touched)">
-          {{ validation.message }}
-        </div>
-      </ng-container>
-    </div>
-
    
 
-    <ion-item  style="left:5%; width:35%;">
-      <ion-label position="floating" color="primary">Entity Type</ion-label>
-      <ion-input type="text" formControlName="type" required></ion-input>
-    </ion-item>
-    <div class="validation-errors">
-      <ng-container *ngFor="let validation of validation_messages.type">
-        <div class="error-message"
-          *ngIf="validations_form.get('type').hasError(validation.type) && (validations_form.get('type').dirty || validations_form.get('type').touched)">
-          {{ validation.message }}
-        </div>
-      </ng-container>
+
+
+
+
+
+
+<h6 style="padding-left: 40%;">Entity Information</h6>
+
+<div style="left: 10%;padding-left: 20px;width: 96%;">
+<mat-form-field appearance="outline">
+  <mat-label>Entity Name</mat-label>
+  <input  type="text" formControlName="id" matInput>
+</mat-form-field>
+</div> 
+<div class="validation-errors">
+  <ng-container *ngFor="let validation of validation_messages.id">
+    <div class="error-message"
+      *ngIf="validations_form.get('id').hasError(validation.type) && (validations_form.get('id').dirty || validations_form.get('id').touched)">
+      {{ validation.message }}
     </div>
+  </ng-container>
+</div>
+
+<div style="left: 10%;padding-left: 20px;width: 96%;">
+<mat-form-field appearance="outline">
+  <mat-label>Entity Type</mat-label>
+  <input  type="text" formControlName="type" matInput>
+</mat-form-field>
+</div> 
+<div class="validation-errors">
+  <ng-container *ngFor="let validation of validation_messages.id">
+    <div class="error-message"
+      *ngIf="validations_form.get('id').hasError(validation.type) && (validations_form.get('id').dirty || validations_form.get('id').touched)">
+      {{ validation.message }}
+    </div>
+  </ng-container>
+</div>
 
 
-  </ion-card> 
+
+ 
+
+
+
+  
+    
+
+  
+
+
+  
+
+    
       
 
 <!--
@@ -121,24 +132,90 @@
 -->
  <!--   <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Register</ion-button>   -->
  
-  </form>
+
+
+
+
+
+
+
  
-
-
-  <ion-card>
-  <h6>Entity Atrributes Information</h6> <ion-fab vertical="top" horizontal="end" >
-    <ion-fab-button (click)="add()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <h6 style="padding-left: 40%;">Entity Atrributes Information</h6> 
+  
     <ion-item> 
-    
-      <ion-input type="text" placeHolder="Atrribute Name..." [(ngModel)]="attname"  required></ion-input>
-      <ion-input type="text" placeHolder="Atrribute Type..." [(ngModel)]="atttype"  required></ion-input>
+  
+      
+
+      <div style="left: 10%;padding-left: 20px;width: 50%;">
+        <mat-form-field appearance="outline">
+          <mat-label>Atrrubute Name</mat-label>
+          <input type="text" [(ngModel)]="attname" [ngModelOptions]="{standalone: true}" matInput>
+        </mat-form-field>
+        </div> 
+        
+
+
+
+      
+        <mat-form-field appearance="outline" style="left: 3%;width: 40%;">
+          <mat-label>Select Atrribute Type</mat-label>
+          <mat-select  [(ngModel)]="atttype"  [ngModelOptions]="{standalone: true}">
+            <mat-option value="Float">Float</mat-option>
+            <mat-option value="Integer">Integer</mat-option>
+            <mat-option value="Double">Double</mat-option>
+            <mat-option value="Boolean">Boolean</mat-option>
+          </mat-select>
+        </mat-form-field>
+      <div style="padding-left: 4%;padding-bottom: 2%;" >
+        
+        <ion-fab-button (click)="add()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      
+    </div>
+
+
+        
+
+
     </ion-item>
-</ion-card>
+
+    
+   
 
 
+
+
+  <div style="padding-top:2%">
+  <ion-item *ngFor="let i of attributes" >
+    <ion-avatar slot="start"  >
+      <img src="https://www.iconbunny.com/icons/media/catalog/product/4/0/4095.9-variable-resistor-icon-iconbunny.jpg">
+    </ion-avatar>
+    <ion-label >
+      <h2><b>{{i.attName}}</b></h2>
+     
+    </ion-label >
+    <ion-label >
+     
+      <h3>{{i.atttype}}</h3>
+    </ion-label>
+  
+      <ion-buttons slot="end">
+
+  
+        <ion-button style=" font-size: 17px" (click)="edit(i.id)" >
+          <ion-icon name="brush"></ion-icon>
+        </ion-button>
+        
+        <ion-button class="iconsize" (click)="confirmdel(i.id)">
+          <ion-icon slot="end" name="close"></ion-icon>
+        </ion-button>
+       
+      
+      </ion-buttons>
+  </ion-item>
+</div>
+<!--
 <ion-grid>
   <ion-row>
     <ion-col size="2.3" *ngFor="let i of attributes" >
@@ -177,8 +254,20 @@
 </ion-row>
 
 </ion-grid>
+-->
 
 
+
+<div size="2.15" style="padding-top: 4%; left: 4%;padding-bottom: 4%;" >
+
+  <ion-button (click)="onCancel()" color="medium">Cancel</ion-button>
+   <ion-button class="submit-btn" type="submit"vertical="top" horizontal="end" >Create</ion-button>
+  
+</div>
+
+  </form>
+
+ </ion-card> 
 
 <!--
 <ion-grid>
@@ -220,6 +309,8 @@
 
 </ion-grid>-->
   
+
+
 </ion-content> 
 
 

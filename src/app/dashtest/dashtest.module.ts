@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DashtestPageRoutingModule } from './dashtest-routing.module';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { DashtestPage } from './dashtest.page';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { DashtestPage } from './dashtest.page';
     FormsModule,
     IonicModule,
     DashtestPageRoutingModule,
-    NgxGaugeModule
+    NgxGaugeModule,
+    NgApexchartsModule
   ],
   declarations: [DashtestPage]
 })

@@ -68,23 +68,35 @@
   
   .myback{
     --background: #075e54;
+//--background:#1b1b1b;
     color: #F5F5F5;
     }
   
     
   .myback1{
-    --background: #3caa9d;
+   //--background: #3caa9d;
+    --background:#075e54;
     color: #F5F5F5;
+   // --background: #000000;
     }
   
     .background{
-     --background: #fff url("../../assets/images/223.jpg") no-repeat center center;
+   //  --background: #fff url("../../assets/images/223.jpg") no-repeat center center;
     // --background:#c7d4ca;
+    --background:#f7f7f7b2;
      }
+
+     .background1{
+       //--background: #fff url("../../assets/images/67.jpg") no-repeat center center;
+       // --background:#c7d4ca;
+      // --background:#f7f7f7d0;
+      --background:#f7f7f796;
+        }
   
   
   
   .ion-card-design {
+   // --background: #fff url("../../assets/images/67.jpg") no-repeat center center;
     border-radius: 20px;
    // --background:  #353838;
     font-weight: bold;
@@ -105,7 +117,8 @@
   
       font-weight: bold;
       text-align: center;
-      color:#1a885e
+     // color:#1a885e
+     --background:#1b1b1b;
     }
   
     .ion-card-design-back {
@@ -128,7 +141,7 @@
   
   
   .iconsize{
-    font-size: 40px; //Preferred size here
+    font-size: 20px; //Preferred size here
     color: #F5F5F5;
   }
   
@@ -163,8 +176,15 @@
   
   
   .graph{
-  --background: #128C7E;
+  //--background: #128C7E;
+  --background:#1b1b1b;
   color:#F8F8F8;
   text-align:center;
   }
+
+  #chart {
+    max-width: 650px;
+    margin: 35px auto;
+  }
+  
   

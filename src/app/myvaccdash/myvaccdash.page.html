@@ -1,0 +1,344 @@
+<ion-header>
+
+
+  <ion-toolbar class="myback1" >
+    <ion-buttons  slot="start">
+
+      <ion-button  (click)="menuctlfun()" style="padding-left: 0%;">
+        <ion-icon slot="end" name="menu"></ion-icon>
+       
+      </ion-button>
+      </ion-buttons>
+   
+    
+    <ion-buttons  slot="start">
+
+      <ion-title >Vaccination Dashboard</ion-title>
+
+      <ion-button  (click)="maindash()" style="padding-left:10%;">
+        <mat-label>Operation Panel</mat-label>
+       
+      </ion-button>
+
+      <ion-button  (click)="dataloggerroute()" style="padding-left:10%;">
+        <mat-label>DataLogger Panel</mat-label>
+       
+      </ion-button>
+     
+
+<!--    
+      <ion-button  (click)="vaccinventory()" style="padding-left: 3%;">
+        <mat-label>Vaccine Inventory</mat-label>
+       
+      </ion-button>
+
+      
+      
+
+  <button mat-button onmouseover="animals" [matMenuTriggerFor]="animals">Animal index</button>
+  <mat-menu #animals="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+    <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+  </mat-menu>
+  
+  <mat-menu #vertebrates="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+    <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+    <button mat-menu-item [matMenuTriggerFor]="reptiles" >Reptiles</button>
+    <button mat-menu-item>Birds</button>
+    <button mat-menu-item>Mammals</button>
+  </mat-menu>
+  
+  <mat-menu #invertebrates="matMenu">
+    <button mat-menu-item>Insects</button>
+    <button mat-menu-item>Molluscs</button>
+    <button mat-menu-item>Crustaceans</button>
+    <button mat-menu-item>Corals</button>
+    <button mat-menu-item>Arachnids</button>
+    <button mat-menu-item>Velvet worms</button>
+    <button mat-menu-item>Horseshoe crabs</button>
+  </mat-menu>
+  
+  <mat-menu #fish="matMenu">
+    <button mat-menu-item>Baikal oilfish</button>
+    <button mat-menu-item>Bala shark</button>
+    <button mat-menu-item>Ballan wrasse</button>
+    <button mat-menu-item>Bamboo shark</button>
+    <button mat-menu-item>Banded killifish</button>
+  </mat-menu>
+  
+  <mat-menu #amphibians="matMenu">
+    <button mat-menu-item>Sonoran desert toad</button>
+    <button mat-menu-item>Western toad</button>
+    <button mat-menu-item>Arroyo toad</button>
+    <button mat-menu-item>Yosemite toad</button>
+  </mat-menu>
+  
+  <mat-menu #reptiles="matMenu">
+    <button mat-menu-item>Banded Day Gecko</button>
+    <button mat-menu-item>Banded Gila Monster</button>
+    <button mat-menu-item>Black Tree Monitor</button>
+    <button mat-menu-item>Blue Spiny Lizard</button>
+    <button mat-menu-item disabled>Velociraptor</button>
+  </mat-menu>
+
+-->  
+
+     
+     
+     
+    
+    </ion-buttons>
+
+  
+    <ion-buttons  slot="end">
+
+     
+
+      <ion-button class="iconsize" (click)="linechartgraph()">
+       
+        <ion-icon slot="end" name="person"></ion-icon>
+      </ion-button>
+     
+      
+      <ion-button class="iconsize" (click)="logout()">
+      
+        <ion-icon slot="end" name="settings"></ion-icon>
+      </ion-button>
+     
+     
+    
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+
+
+
+
+<div class="tileset">
+
+  <ion-row  >
+    
+    <ion-col size="3" >
+      <ion-card  color="success" class="cardsise" >
+        <ion-card-header>
+          <ion-card-subtitle><b>Total Vaccination</b></ion-card-subtitle>
+          <ion-card-title class="fontsize">{{tvacc}}</ion-card-title>
+        </ion-card-header>
+        
+       </ion-card>
+       </ion-col>
+   
+
+    <ion-col size="3"  >
+      <ion-card  color="warning" class="cardsise" >
+        <ion-card-header>
+          <ion-card-subtitle><b>Vaccine Stock</b></ion-card-subtitle>
+          <ion-card-title class="fontsize">{{svacc}}</ion-card-title>
+        </ion-card-header>
+        
+       </ion-card>
+       </ion-col>
+  
+
+    <ion-col size="3"  >
+      <ion-card  color="danger"class="cardsise" >
+        <ion-card-header>
+          <ion-card-subtitle><b>Vaccine Wasted</b></ion-card-subtitle>
+          <ion-card-title class="fontsize">{{wvacc}}</ion-card-title>
+        </ion-card-header>
+       </ion-card>
+       </ion-col>
+    </ion-row>
+  </div>   
+
+  <mat-form-field appearance="outline" style="width: 50%;left: 2%;">
+    <mat-label>Select DATA Table</mat-label>
+    <mat-select [(ngModel)]="vtype">
+      <mat-option value="order">Order</mat-option>
+      <mat-option value="data">Vaccine Data</mat-option>
+      <mat-option value="Astrazenica">Astrazenica</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngIf='vtype == "order"'>
+
+
+
+
+<div >
+ 
+  <div >
+    <ion-card-title style="left: 2%;">Order</ion-card-title>
+    <mat-form-field appearance="outline"  class="set">
+      <mat-label>Search</mat-label>
+      
+      <input matInput (keyup)="applyFilter1($event)" placeholder="New Delhi" #input>
+      
+    </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8" matSort>
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+          
+      <!-- Position Column -->
+      <ng-container matColumnDef="order_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.order_id}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="center_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Center Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.center_name}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="order_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.order_date}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="order_quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.order_quantity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let element"><ion-button style="width: 50%;" color="{{element.color}}"  >{{element.status}} </ion-button> </td>
+      </ng-container>
+      <ng-container matColumnDef="shipped_order">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Shipped Order </th>
+        <td mat-cell *matCellDef="let element"> {{element.shipped_order}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+    
+  </div>
+</div>
+<!--
+
+
+-->
+
+<div *ngIf='vtype  == "data"'>
+
+
+
+
+<div class="mat">
+ 
+  <div >
+    
+    <ion-card-title style="left: 2%;">Vaccine Data</ion-card-title>
+    <mat-form-field appearance="outline"  class="set">
+      <mat-label>Search</mat-label>
+      
+      <input matInput (keyup)="applyFilter($event)" placeholder="New Delhi" #input>
+      
+    </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+          
+      <!-- Position Column -->
+      <ng-container matColumnDef="center_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Center Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.center_id}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="center_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Center Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.center_name}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="vacc_stoke">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vaccine Stoke </th>
+        <td mat-cell *matCellDef="let element"> {{element.vacc_stoke}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="vacc_waste">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vaccine Wasted </th>
+        <td mat-cell *matCellDef="let element"> {{element.vacc_waste}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vacc_total">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Vaccination </th>
+        <td mat-cell *matCellDef="let element"> {{element.vacc_total}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+
+</div> 
+  
+
+  <div id="linechart">
+    <apx-chart
+      [series]="linechartOptions.series"
+      [chart]="linechartOptions.chart"
+      [xaxis]="linechartOptions.xaxis"
+      [stroke]="linechartOptions.stroke"
+      [colors]="linechartOptions.colors"
+      [dataLabels]="linechartOptions.dataLabels"
+      [legend]="linechartOptions.legend"
+      [markers]="linechartOptions.markers"
+      [grid]="linechartOptions.grid"
+      [yaxis]="linechartOptions.yaxis"
+      [title]="linechartOptions.title"
+    ></apx-chart>
+  </div>
+
+
+
+
+<!-- -->
+  <div id="chart">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [labels]="chartOptions.labels"
+      [responsive]="chartOptions.responsive"
+    ></apx-chart>
+    <p style="text-align: center;">Vaccines Available in Million</p>
+    </div>
+ 
+ <ion-button (click)="check()" >Check</ion-button>
+
+
+
+</ion-content>

@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar class="myback1" >
+    <ion-buttons slot="start">
+      <ion-back-button (click)="entityManagerPageroute()"></ion-back-button>
+    </ion-buttons>
+    <ion-title ><b>Vaccine Inventory </b></ion-title>
+    <ion-buttons  slot="end">
+     
+      
+      <ion-button class="iconsize" (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      </ion-button>
+     
+    
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-item>Current Stoke</ion-item>
+<ion-lebal></ion-lebal>
+  <div id="chart">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [labels]="chartOptions.labels"
+      [fill]="chartOptions.fill"
+      [dataLabels]="chartOptions.dataLabels"
+      [responsive]="chartOptions.responsive"
+    ></apx-chart>
+  </div>
+
+
+  <!--
+  <ion-item> Vaccine Disspatched data</ion-item>
+
+  <div id="chart1">
+    <apx-chart
+      [series]="chartOptions1.series"
+      [chart]="chartOptions1.chart"
+      [xaxis]="chartOptions1.xaxis"
+      [dataLabels]="chartOptions1.dataLabels"
+      [grid]="chartOptions1.grid"
+      [stroke]="chartOptions1.stroke"
+      [title]="chartOptions1.title"
+      [markers]="chartOptions1.markers"
+      [yaxis]="chartOptions1.yaxis"
+      [fill]="chartOptions1.fill"
+    ></apx-chart>
+  </div>
+-->
+</ion-content>

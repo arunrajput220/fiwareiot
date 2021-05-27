@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { RestapiService } from '../restapi.service';
 
+import {EntityinfoPage} from '../entityinfo/entityinfo.page'
+
 @Component({
   selector: 'app-entitymanager',
   templateUrl: './entitymanager.page.html',
@@ -27,9 +29,13 @@ export class EntitymanagerPage implements OnInit {
     this.router.navigateByUrl('login');
   }
 
+  sendEntityName(val){
+    EntityinfoPage.prototype.getEntityName(val)
+    this.router.navigateByUrl('entityinfo')
+  }
   
   async allEntities(){
-  
+    this.data1=[]
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
      message:"Loding Entities...."

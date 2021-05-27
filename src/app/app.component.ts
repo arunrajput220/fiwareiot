@@ -27,7 +27,7 @@ export class AppComponent {
       icon: 'bar-chart'
     },  
       {
-      title: 'Identity Manger',
+      title: 'Identity Manager',
       url: '/idm',
       icon: 'shield-half'
     },  
@@ -40,6 +40,10 @@ export class AppComponent {
       title: 'Control Panel',
       url: '/controlpanel',
       icon: 'toggle'
+    },{
+      title: 'Monitor',
+      url: '/monitor',
+      icon: 'settings'
     },
 
     
@@ -59,19 +63,23 @@ export class AppComponent {
       title: 'Support',
       url: '/support',
       icon: 'build'
+    },{
+      title: 'Firebase Dash',
+      url: '/dashtest',
+      icon: 'search'
     },
-    /*
-    {
-      title: 'IoT Platform Support',
-      url: '/main',
-      icon: 'pulse'
-    },
-    {
-      title: 'Test Page',
-      url: '/test',
-      icon: 'dice'
-    }
-    */
+    
+    // {
+    //   title: 'IoT Platform Support',
+    //   url: '/main',
+    //   icon: 'pulse'
+    // },
+    // {
+    //   title: 'Test Page',
+    //   url: '/dashtest',
+    //   icon: 'dice'
+    // }
+    
   ];
   public labels = ['AtoS Fiware POC Application'];
   constructor() {}

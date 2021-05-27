@@ -1,0 +1,252 @@
+<ion-header>
+
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-toolbar class="myback1" >
+   
+    <ion-title ><b><b>{{title}} Dashboard</b></b></ion-title>
+    <ion-buttons  slot="end">
+      <ion-button (click)="alertmsg()">
+        <ion-icon slot="icon-only"name="notifications">
+        </ion-icon>
+        <ion-badge  color="primary">{{alertcount}}</ion-badge>
+      </ion-button> 
+
+      <ion-button style=" font-size: 17px" (click)="userDetails()" >
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
+      
+      <ion-button class="" (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      </ion-button>
+     
+    
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+</ion-header>
+
+
+
+<ion-content class="background">
+
+
+
+
+<ion-grid>
+  <ion-row>
+
+
+
+
+    <ion-col size="4" >
+      <ion-card class="ion-card-design" > 
+        <ion-row>
+            <ion-col size="5" >
+              <br>
+              
+              <ion-img style="width:100% ;height:80%" src="../../assets/images/23.png">
+              </ion-img>  
+        </ion-col>
+    
+  
+        <ion-col size="5" *ngFor = 'let i of  data1' >
+          <h6>Entity Name :  <h2 class="cardalign" (click)="deviceData(3)">{{i.id}}</h2></h6>
+        
+            
+              <ion-card-subtitle class="cardalign" style="text-align: center;">
+                <h6>Type : <ion-label color="primary">{{i.type}}</ion-label></h6>
+              </ion-card-subtitle>
+            
+                
+                
+            
+    
+            
+             
+             
+         
+        </ion-col>
+    
+      </ion-row>
+      
+      </ion-card> 
+      </ion-col>
+  
+
+
+
+
+    <ion-col size="4" >
+      <ion-card class="ion-card-design" size="4" *ngFor = 'let i of  attName' > 
+        <ion-row>
+            
+    
+  
+        <ion-col size="5"  >
+         
+          <ion-chip color="primary" >
+            <ion-label color="medium">{{i}}</ion-label>
+            <ion-chip color="primary" *ngFor = 'let j of  data1' >
+              <ion-label color="medium">{{j[i].value}}</ion-label>
+              <ion-chip color="primary"  >
+                <ion-label color="medium">{{j[i].type}}</ion-label>
+              </ion-chip>
+              <ion-chip color="primary"  >
+                <ion-label color="medium">{{j[i].type.metadata}}</ion-label>
+              </ion-chip>
+              <ion-chip color="primary"  >
+                <ion-label color="medium">{{j[i].type}}</ion-label>
+              </ion-chip>
+            </ion-chip> 
+          </ion-chip>
+         
+        </ion-col>
+    
+      </ion-row>
+      
+      </ion-card> 
+      </ion-col>
+  
+  
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <ion-col size="4" >
+  <ion-card class="ion-card-design" size="4" > 
+    <ion-row>
+
+        <ion-col size="5" >
+          <p class="cardalign" (click)="deviceData(3)">Power Backup</p>
+        <ngx-gauge  [type]="powerbackupType" 
+        [value]="powerbackupValue" 
+        [label]="powerbackupLabel"  
+        [append]="powerbackupAppendText"
+        [thresholds]="powerbackupthresholdConfig"
+        [min]="powerbackupmin"
+        [max]="powerbackupmax"
+        [thick]="powerbackupthick"
+        [size]="powerbackupsize">
+      </ngx-gauge>  
+    </ion-col>
+
+    
+
+    <ion-col size="5"  >
+      
+        <ion-card-header style="text-align: center;">
+          <ion-card-subtitle class="cardalign" (click)="deviceData(2)">
+            
+          </ion-card-subtitle>
+         
+            
+            <div class="div1">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="3">
+                  </ion-col>
+                  <ion-col size="8">
+                      <ion-img width="10" height="10px" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fbattery.png?alt=media&token=a2d0aa9d-759e-4816-b804-b8aa4c44c339">
+                      </ion-img>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+             
+            </div>
+             <p>  </p>
+          Backup Time Left
+
+            <ion-card-title class="fontsize1"  >
+              {{displayTime}} Hrs
+            </ion-card-title>
+         </ion-card-header>
+         
+     
+    </ion-col>
+
+  </ion-row>
+  
+  </ion-card> 
+  </ion-col>
+
+
+
+
+
+
+
+
+
+
+  <ion-col size="4" >
+    <ion-card class="ion-card-design" size="4" > 
+      <ion-row>
+          <ion-col size="5" >
+            <br>
+            
+            <ion-img style="width:80% ;height:80%" src="https://www.flaticon.com/svg/vstatic/svg/2752/2752788.svg?token=exp=1618803186~hmac=0bac004d340d9fffc98948e14eae4e4a">
+            </ion-img>  
+      </ion-col>
+  
+
+      <ion-col size="5"  >
+        <h2 class="cardalign" (click)="deviceData(3)">Temperature</h2>
+        dlkvnlskdnbkldsnkbnsdlkdnlsndlkbnsl
+          <ion-card-header style="text-align: center;">
+            <ion-card-subtitle class="cardalign" (click)="deviceData(2)">
+              
+            </ion-card-subtitle>
+          
+              
+               <p>  </p>
+          Sensor Info
+  
+              <p class="">
+                DTH-11
+              </p>
+              <p class=""  >
+                Siemens
+              </p>
+           </ion-card-header>
+           
+       
+      </ion-col>
+  
+    </ion-row>
+    
+    </ion-card> 
+    </ion-col>
+
+
+
+
+
+</ion-row>
+</ion-grid>  
+
+
+  
+
+</ion-content>

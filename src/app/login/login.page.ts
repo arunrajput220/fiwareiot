@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {  MenuController } from '@ionic/angular';
-
+import {  LoadingController, MenuController } from '@ionic/angular';
+import {MatFormFieldControl} from '@angular/material/form-field';
+import {RestapiService} from '../restapi.service'
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -9,19 +11,83 @@ import {  MenuController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private menuCtrl:MenuController,public router: Router) {
-    //this.menuCtrl.close()
-    this.menuCtrl.enable(false);
-   }
+  validations_form: FormGroup;
+  errorMessage: string = '';
 
-  ionViewWillEnter() {
-   // this.menuCtrl.enable(false);
+  constructor(public loadingController: LoadingController,private menuCtrl:MenuController,public router: Router,public api:RestapiService, private formBuilder: FormBuilder) {
+    this.menuCtrl.enable(false);
+
+    
+
    }
+  
+
+   
+   /*
+  ionViewWillEnter() {
+    this.menuCtrl.swipeGesture(false);
+}
+*/
+
+
+
 
   ngOnInit() {
-  }
-  loginUser(){
-    this.router.navigateByUrl('home')
+
+    this.validations_form = this.formBuilder.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required
+      ])),
+    });
   }
 
+
+  validation_messages = {
+    'email': [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Please enter a valid email.' }
+    ],
+    'password': [
+      { type: 'required', message: 'Password is required.' },
+      { type: 'minlength', message: 'Password must be at least 6 characters long.' }
+    ]
+  };
+
+
+ 
+  
+
+  
+
+ 
+async  loginUser(value){
+
+  this.router.navigateByUrl('home')
+    
+  //   const loading = await this.loadingController.create({
+  //     cssClass: 'my-custom-class',
+  //    message:"Logging Through Eupry"
+  //   });
+  //  await loading.present()
+  //   await this.api.loginUser(value)
+  //         .subscribe(res => { 
+  //           console.log(res)
+  //           this.router.navigateByUrl('myvaccdash')
+            
+  //       loading.dismiss();
+  //     }, err => {
+  //       console.log(err);
+  //       loading.dismiss();
+  //     });
+  }
+  
+  createUser(){
+    this.router.navigateByUrl('myvaccdash')
+  }
+  
 }

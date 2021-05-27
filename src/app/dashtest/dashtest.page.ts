@@ -1,7 +1,64 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AlertController, IonSlides, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, IonSlides, LoadingController, MenuController, ModalController, ToastController } from '@ionic/angular';
 import { Chart } from "chart.js";
 import {RestapiService} from '../restapi.service'
+
+
+
+import { ApexChart, ChartComponent } from "ng-apexcharts";
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {
+  ApexAxisChartSeries,
+  
+  ApexXAxis,
+  ApexDataLabels,
+  ApexStroke,
+  ApexMarkers,
+  ApexYAxis,
+  ApexGrid,
+  ApexTitleSubtitle,
+  ApexLegend
+} from "ng-apexcharts";
+
+import {
+ 
+  ApexFill,
+  
+  ApexTooltip,
+  
+  ApexAnnotations,
+
+} from "ng-apexcharts";
+import { ToastrService } from 'ngx-toastr';
+
+//import {dataSeries } from './series-data'
+import { data } from "./series-data";
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+};
+
+export type ChartOptions1 = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  markers: ApexMarkers;
+  title: ApexTitleSubtitle;
+  
+  yaxis: ApexYAxis;
+  xaxis: ApexXAxis;
+  tooltip: ApexTooltip;
+  stroke: ApexStroke;
+  annotations: ApexAnnotations;
+  colors: any;
+  toolbar: any;
+};
 
 
 @Component({
@@ -14,10 +71,53 @@ export class DashtestPage implements OnInit {
   @ViewChild('slides') slides;
 
 
+  @ViewChild("chart") chart: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
+
+
   @ViewChild('lineCanvas') private lineCanvas: ElementRef;
   @ViewChild('airqualitygraph') private airqualitygraph: ElementRef;
   @ViewChild('humiditygraph') private humiditygraph: ElementRef;
   @ViewChild('windspeedgraph') private windspeedgraph: ElementRef;
+
+
+
+
+  @ViewChild("chart", { static: false }) chart1: ChartComponent;
+  public chartOptions1: Partial<ChartOptions1>;
+  public activeOptionButton = "all";
+  public updateOptionsData = {
+    "1m": {
+      xaxis: {
+        min: new Date("28 Jan 2013").getTime(),
+        max: new Date("27 Feb 2013").getTime()
+      }
+    },
+    "6m": {
+      xaxis: {
+        min: new Date("27 Sep 2012").getTime(),
+        max: new Date("27 Feb 2013").getTime()
+      }
+    },
+    "1y": {
+      xaxis: {
+        min: new Date("27 Feb 2012").getTime(),
+        max: new Date("27 Feb 2013").getTime()
+      }
+    },
+    "1yd": {
+      xaxis: {
+        min: new Date("01 Jan 2013").getTime(),
+        max: new Date("27 Feb 2013").getTime()
+      }
+    },
+    all: {
+      xaxis: {
+        min: undefined,
+        max: undefined
+      }
+    }
+  };
 
  
   segment=0
@@ -82,14 +182,40 @@ powerbackupmax=100;
 powerbackupsize=140;
 powerbackupthick=10;
 powerbackupValue ;
+
+//windspeeed parameter'
+windspeeedType = "arch";
+windspeeedmin=0;
+windspeeedmax=100;
+windspeeedsize=140;
+windspeeedthick=10;
+windspeeedValue ;
  
-powerbackupLabel = "%";
+windspeeedLabel = "miles/h";
   //gaugeAppendText = " 'C";
   powerbackupthresholdConfig = {
     '60': {color: 'green'},
     '40': {color: 'orange'},
     '20': {color: 'red'}
 };
+
+
+//windspeeed parameter'
+objectType = "arch";
+objectmin=0;
+objectmax=600;
+objectsize=140;
+objectthick=10;
+objectValue ;
+objectLabel = "cm";
+  //gaugeAppendText = " 'C";
+  objectthresholdConfig = {
+    '60': {color: 'green'},
+    '40': {color: 'orange'},
+    '20': {color: 'red'}
+};
+
+Label="cm";
   entities: any[];
 
   tempdata=[]
@@ -109,29 +235,341 @@ powerbackupLabel = "%";
  temperaturedata:any
  windspeeddata:any
  pressure:any
+  sidemenu: boolean=false;
 
   
-
+mydata =[{
+  x: "2021-04-26 08:30:45",
+  y: 76
+},
+{
+  x: "2021-04-26 08:42:45",
+  y: 77
+},
+{
+  x: "2021-04-26 08:44:45",
+  y: 78
+},
+{
+  x: "2021-04-26 08:46:45",
+  y: 70
+},
+{
+  x: "2021-04-26 08:48:45",
+  y: 17
+},
+{
+  x: "2021-04-26 08:50:45",
+  y: 76
+},
+{
+  x: "2021-04-26 08:52:45",
+  y: 77
+},
+{
+  x: "2021-04-26 08:54:45",
+  y: 78
+},
+{
+  x: "2021-04-26 08:56:45",
+  y: 70
+},
+{
+  x: "2021-04-26 09:58:45",
+  y: 17
+}]
   constructor(private api :RestapiService,public loadingController: LoadingController,
     public alertController: AlertController,
     public modalController: ModalController ,
-    public toastController: ToastController
-    ) {
+    public toastController: ToastController,
+    private toastr: ToastrService,
+    private menuCtrl:MenuController,/*public inAppBrowser: InAppBrowser*/) { 
+     this.menuCtrl.enable(true);
 //this.lineChartMethod()
-this.Initization()
-//this.Initization1()
-
-
-this.initTimer();
-      this. startTimer();
-this.fix()
+// this.Initization()
+// //this.Initization1()
+this.mygraph();
+this.powerbackup();
+this.initChart()
+// this.initTimer();
+//       this. startTimer();
+ this.fix()
    }
+
+
+
+   
+  initChart(): void {
+    this.chartOptions1 = {
+      series: [
+        {
+          data: this.mydata
+        },
+        {
+          data: [{
+            
+            x: "2021-04-27 08:48:45",
+            y: 17
+          },
+          {
+            x: "2021-04-27 08:50:45",
+            y: 76
+          }]
+        },
+        { name: "Humidity",
+          data: [{
+            x: "2021-04-28 08:48:45",
+            y: 17
+          },
+          {
+            x: "2021-04-29 08:50:45",
+            y: 76
+          },
+          {
+            x: "2021-05-23 08:50:45",
+            y: 76
+          },
+          {
+            x: "2021-05-29 08:50:45",
+            y: 76
+          }]
+        },
+          {
+            data: [{
+              x: "2021-04-30 08:48:45",
+              y: 17
+            },
+            {
+              x: "2021-04-30 08:50:45",
+              y: 76
+            }]
+          }
+        
+      ],
+      chart: {
+        type: "area",
+        height: 350
+      },
+      annotations: {
+        // yaxis: [
+        //   {
+        //     y: 30,
+        //     borderColor: "#999",
+        //     // label: {
+        //     //   text: "Support",
+        //     //   style: {
+        //     //     color: "#fff",
+        //     //     background: "#00E396"
+        //     //   }
+        //     // }
+        //   }
+        // ],
+        xaxis: [
+          {
+            x: new Date("14 Jan 2021").getTime(),
+            borderColor: "#999",
+            label: {
+              text: "Rally",
+              style: {
+                color: "#fff",
+                background: "#775DD0"
+              }
+            }
+          }
+        ]
+      },
+      dataLabels: {
+        enabled: false
+      },
+      markers: {
+        size: 0
+      },
+      xaxis: {
+        type: "datetime",
+        min: new Date("01 Mar 2021").getTime(),
+        tickAmount: 6
+      },
+      tooltip: {
+        x: {
+          format: "dd MMM yyyy HH:mm:ss"
+        }
+      }}
+  }
+
+  public updateOptions(option: any): void {
+    this.activeOptionButton = option;
+    this.chart.updateOptions(this.updateOptionsData[option], false, true, true);
+  }
+
+
+
+
+   mygraph(){
+    this.chartOptions = {
+      series: [
+        {
+          name: "Desktops",
+          data: this.tempdata
+        },
+        {
+          name: "Desktops",
+          data: [10,44,90]
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: "straight"
+      },
+      title: {
+        text: "Product Trends by Month",
+        align: "left"
+      },
+      grid: {
+        row: {
+          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5
+        }
+      },
+      xaxis: {
+        categories: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep"
+        ]
+      }
+    };
+   }
+
+
+   menuctlfun(){
+    if(this.sidemenu == true){
+      console.log("Entering true function : "+this.sidemenu)
+      this.menuCtrl.enable(true)
+      this.sidemenu = false
+      console.log("exiting true function : "+this.sidemenu)
+    // this.menuCtrl.enable(false)
+    }
+    else if(this.sidemenu == false){
+      console.log("Entering False function : "+this.sidemenu)
+      this.menuCtrl.enable(false)
+      this.sidemenu = true
+      console.log("Exting fslae function : "+this.sidemenu)
+    }
+    else{
+      console.log("nothing")
+    }
+    console.log(this.sidemenu)
+  //  this.menucontrol();
+  }
+
+
+
+   async  powerbackup(){
+    
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+     message:"Fetching........."
+    });
+ // await loading.present()
+    await this.api.getPowerBackupData()
+          .subscribe(res => { 
+            console.log(res)
+           // this.router.navigateByUrl('myvaccdash')
+            this.powerbackupValue =res;
+        loading.dismiss();
+      }, err => {
+        console.log(err);
+        loading.dismiss();
+      });
+
+      await this.api.getTemperatureTimeSeries()
+      .subscribe(res => { 
+        console.log(res)
+       // this.router.navigateByUrl('myvaccdash')
+       this.watertankValue =res;
+       this.tempdata.push(this.watertankValue)
+       this.mygraph();
+    loading.dismiss();
+  }, err => {
+    console.log(err);
+    loading.dismiss();
+  });
+
+
+
+  await this.api.getAirQualityData()
+  .subscribe(res => { 
+    console.log(res)
+   // this.router.navigateByUrl('myvaccdash')
+   this.airgaugeValue =res;
+loading.dismiss();
+}, err => {
+console.log(err);
+loading.dismiss();
+});
+
+
+
+await this.api.getDistanceTimeSeries()
+.subscribe(res => { 
+  console.log(res)
+ // this.router.navigateByUrl('myvaccdash')
+ this.windspeeedValue =res;
+loading.dismiss();
+}, err => {
+console.log(err);
+loading.dismiss();
+});
+
+
+await this.api.getHumidityTimeSeries()
+.subscribe(res => { 
+  console.log(res)
+ // this.router.navigateByUrl('myvaccdash')
+ this.humditydata  =res;
+loading.dismiss();
+}, err => {
+console.log(err);
+loading.dismiss();
+});
+
+await this.api.getLightIntensityData()
+.subscribe(res => { 
+  console.log(res)
+ // this.router.navigateByUrl('myvaccdash')
+ this.pressure  =res;
+loading.dismiss();
+}, err => {
+console.log(err);
+loading.dismiss();
+});
+
+
+  }
 
   ngOnInit() {
     
    
   
   }
+
+
+  
 
  
 
@@ -181,12 +619,13 @@ this.fix()
 
   fix(){
     setInterval( ()=>{
-      this.Initizationonce();
-      this.lineChartMethod();
-      this.windspeedChartMethod()
-      this.humdityChartMethod();
-      this.airqualityChartMethod();
-    },5000)  
+      // this.Initizationonce();
+      // this.lineChartMethod();
+      // this.windspeedChartMethod()
+      // this.humdityChartMethod();
+      // this.airqualityChartMethod();
+      this.powerbackup();
+    },4000)  
    }
 
 

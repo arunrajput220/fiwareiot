@@ -1,0 +1,393 @@
+<ion-header>
+  <ion-toolbar class="myback1" >
+    <ion-buttons slot="start">
+      <ion-back-button (click)="entityManagerPageroute()"></ion-back-button>
+    </ion-buttons>
+    <ion-title ><b><b>Create Entity </b></b></ion-title>
+    <ion-buttons  slot="end">
+     
+      
+      <ion-button class="iconsize" (click)="logout()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      </ion-button>
+     
+    
+    </ion-buttons>
+    
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content class="background">
+  
+  
+  <br>
+  <div style="top:60%;left: 10%;padding-left: 20px;width: 80%;font-size:xx-large;">
+   Received Vaccine Details 
+    
+    
+  </div>
+
+
+<!--
+  <ion-list lines="none">
+    <form [formGroup]="myForm">
+      <ion-item *ngFor="let control of myForm.controls | keyvalue">
+        <ion-input required type="text" formControlName="attribute_name" placeHolder="player name..."></ion-input>
+        <ion-input required type="text" formControlName="atrributr_object" placeHolder="player name..."></ion-input>
+        <ion-icon (click)="removeControl(control)" name="close-circle"></ion-icon>
+      </ion-item>
+    </form>
+  </ion-list>
+  <ion-button expand="full" color="light" (click)="addControl()">Add Player</ion-button>
+
+
+-->
+<br>
+<ion-card style="left: 10%;padding-left: 20px;width: 80%;padding-bottom: 20px;">
+  <div style="padding-top: 20px;" >
+    <ion-row >
+      <ion-col style="width: 20%;height: 30%;" color="primary">
+        <ion-img style="width :25%; height:25%" src="http://qr.kaywa.com/?l=1&s=8&d=http%3A%2F%2Finside-galaxy.blogspot.com"></ion-img> 
+      </ion-col>
+      <ion-col style="top:50%;right: 37%; width: 20%;height: 30%;" color="primary">
+        
+        (01) 193872819<br>
+        (21) 876826197<br>
+        (10) 621417191<br>
+        (17) 480270217<br>
+      </ion-col>
+
+    </ion-row>
+     
+             </div>
+  The information needed to complete the GS1 fields below can be read on the labels of the vaccine boxes.
+  If you have a scanner attached to your laptop you can scan the DataMatrix and the fields will be populated accordingly
+
+</ion-card>
+
+<ion-card style="left: 10%;padding-left: 20px;width: 80%;">
+  
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+   <br>
+
+ 
+
+
+
+
+
+
+  <br>
+
+<div style="left: 10%;padding-left: 20px;width: 97%;">
+
+
+
+  <p>
+    <mat-form-field appearance="outline">
+      <mat-label>GTIN</mat-label>
+      <mat-select   formControlName="vendor">
+        <mat-option value="Pfizer">Pfizer</mat-option>
+        <mat-option value="Moderna">Moderna</mat-option>
+        <mat-option value="Astrazenica">Astrazenica</mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+  
+  </p>
+
+
+
+<mat-form-field appearance="outline">
+  <mat-label>Number of Vaccine</mat-label>
+  <input  type="number" formControlName="vacc_num" matInput>
+</mat-form-field>
+<!--
+  
+  <div class="validation-errors">
+  <ng-container *ngFor="let validation of validation_messages.id">
+    <div class="error-message"
+      *ngIf="validations_form.get('id').hasError(validation.type) && (validations_form.get('id').dirty || validations_form.get('id').touched)">
+      {{ validation.message }}
+    </div>
+  </ng-container>
+-->
+
+
+
+
+  <mat-form-field appearance="outline">
+    <mat-label>Expiration Date</mat-label>
+    <input  type="date" formControlName="exp_date" matInput>
+  </mat-form-field>
+ <!-- 
+  <div class="validation-errors">
+    <ng-container *ngFor="let validation of validation_messages.id">
+      <div class="error-message"
+        *ngIf="validations_form.get('id').hasError(validation.type) && (validations_form.get('id').dirty || validations_form.get('id').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+  </div>
+-->
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Refrigrator ID
+      </mat-label>
+      <input  type="text" formControlName="id_fridge" matInput>
+    </mat-form-field>
+   <!-- 
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.id">
+        <div class="error-message"
+          *ngIf="validations_form.get('id').hasError(validation.type) && (validations_form.get('id').dirty || validations_form.get('id').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+    </div>
+-->
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Select Vaccine</mat-label>
+        <mat-select >
+          <mat-option value="Pfizer">Pfizer</mat-option>
+          <mat-option value="Moderna">Moderna</mat-option>
+          <mat-option value="Astrazenica">Astrazenica</mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+    
+    
+
+    <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Defective</mat-label>
+    <input type="text"
+           placeholder="Non"
+           aria-label="Number"
+           matInput
+           formControlName="vacc_def"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option  value="Non">
+		None
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+
+  <mat-form-field class="example-chip-list" appearance="outline">
+    <mat-label>Defective Vaccine Id</mat-label>
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip
+        *ngFor="let fruit of fruits"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(fruit)">
+        {{fruit}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="New fruit..."
+        #fruitInput
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    
+  </mat-form-field>
+
+    
+
+  <div class="example-container">
+    
+     
+      <mat-form-field appearance="outline">
+        <mat-label>Fridge</mat-label>
+  
+        <input matInput placeholder="Simple placeholder" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" >
+        <mat-label>Both a label and a placeholder</mat-label>
+        <input matInput placeholder="Simple placeholder">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline"
+          >
+        <mat-select required>
+          <mat-option>-- None --</mat-option>
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+        <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
+      </mat-form-field>
+    
+  </div>
+  
+
+
+    
+  </div> 
+
+  <!--
+    <ion-item style="left:5%; width:35%;">
+      <ion-label position="floating" color="primary">Entity Name</ion-label>
+      <ion-input  type="text" formControlName="id"></ion-input>
+    </ion-item>
+    
+
+   
+
+    <ion-item  style="left:5%; width:35%;">
+      <ion-label position="floating" color="primary">Entity Type</ion-label>
+      <ion-input type="text" formControlName="type" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.type">
+        <div class="error-message"
+          *ngIf="validations_form.get('type').hasError(validation.type) && (validations_form.get('type').dirty || validations_form.get('type').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+
+  -->
+
+    
+      
+
+
+<br>
+
+<ion-col size="2.15"  >
+
+  <ion-button (click)="onCancel()" color="medium"><ion-icon name="close"></ion-icon>Cancel</ion-button>
+   <ion-button class="submit-btn" type="submit"vertical="top" horizontal="end" ><ion-icon name="add"></ion-icon>Add</ion-button>
+  
+  </ion-col>
+
+  </form>
+<br>
+  
+</ion-card> 
+
+
+
+
+
+<!--
+<ion-card>
+  <h4>Entity Atrributes Information</h4> <ion-fab vertical="top" horizontal="end" >
+    <ion-fab-button (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+    <ion-item> 
+    
+      <ion-input type="text" placeHolder="Atrribute Name..." [(ngModel)]="attname"  required></ion-input>
+      <ion-input type="text" placeHolder="Atrribute Type..." [(ngModel)]="atttype"  required></ion-input>
+    </ion-item>
+   
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.attribute_name">
+        <div class="error-message"
+          *ngIf="validations_form.get('attribute_name').hasError(validation.type) && (validations_form.get('attribute_name').dirty || validations_form.get('attribute_name').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+  </ion-card>
+-->
+ <!--   <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Register</ion-button>   -->
+ 
+
+<!--
+<ion-grid>
+  <ion-row>
+    <ion-col size="2.3" *ngFor="let i of attributes" >
+      <ion-card>
+        <ion-card-header>
+         
+          <ion-card-title></ion-card-title>
+          <ion-card-subtitle>Atrribute
+          <ion-buttons >
+    
+      
+            <ion-button style=" font-size: 17px" (click)="edit(i.attName)" >
+              <ion-icon name="brush"></ion-icon>
+            </ion-button>
+            
+            <ion-button class="iconsize" (click)="delete(i.attName)">
+              <ion-icon slot="end" name="close"></ion-icon>
+            </ion-button>
+           
+          
+          </ion-buttons>
+        </ion-card-subtitle>
+          <ion-card-title>{{i.attName}}</ion-card-title>
+          <ion-card-title>{{i.atttype}}</ion-card-title>
+          
+          
+        </ion-card-header>
+      
+        <ion-card-content>
+       
+        </ion-card-content>
+      </ion-card>
+  
+
+</ion-col>
+</ion-row>
+
+</ion-grid>
+-->
+
+
+<!--
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let i of attributes">
+      <div>
+      
+        {{i.attName}}
+      </div>
+    ............
+      
+        {{i.atttype}}
+      
+    </ion-col>
+  </ion-row>
+  
+</ion-grid>
+
+<ion-grid>
+  <ion-row>
+    <ion-col style="left: 100px;">
+<ion-card >
+  <table style="width:100%;">
+    
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+    </tr>
+  
+    <ion-item *ngFor="let i of attributes ">
+      
+      <td  >{{i.attName}}</td>
+      <td >{{i.atttype}}</td>
+    </ion-item>  
+  </table>
+</ion-card> 
+</ion-col>
+</ion-row>
+
+</ion-grid>-->
+  
+
+
+</ion-content> 
+
+

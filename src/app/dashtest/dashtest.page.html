@@ -1,403 +1,327 @@
+<ion-header>
 
+  <ion-toolbar class="myback1" >
 
-<ion-header >
-  <ion-toolbar class="myback">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="home"></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{title}}</ion-title>
-    <ion-buttons class="graph" slot="end">
+    <ion-buttons  slot="start">
+
+      <ion-button  (click)="menuctlfun()" style="padding-left: 0%;">
+        <ion-icon slot="end" name="menu"></ion-icon>
+       
+      </ion-button>
+      </ion-buttons>
+   
+    <ion-title ><b><b>{{title}} Dashboard</b></b></ion-title>
+    <ion-buttons  slot="end">
       <ion-button (click)="alertmsg()">
         <ion-icon slot="icon-only"name="notifications">
         </ion-icon>
-        <ion-badge *ngIf='alertcount >0' color="primary">{{alertcount}}</ion-badge>
+        <ion-badge  color="primary">{{alertcount}}</ion-badge>
       </ion-button> 
 
-      <ion-button (click)="userDetails()" >
-        <ion-icon  slot="icon-only" ios="person-outline" md="person-outline"></ion-icon>
+      <ion-button style=" font-size: 17px" (click)="userDetails()" >
+        <ion-icon name="person"></ion-icon>
       </ion-button>
       
-   
+      <ion-button class="iconsize" (click)="logout()">
+        <ion-icon slot="end" name="log-out"></ion-icon>
+      </ion-button>
      
     
     </ion-buttons>
     
   </ion-toolbar>
-<div>
-  <ion-segment (ionChange)="segmentChanged($event)"  [(ngModel)]="segment" class="myclass">
-      
-    <ion-segment-button  class="myclass" value="0">
-     <b class="myclass">Temperature</b> 
-    </ion-segment-button>
-    <ion-segment-button class="myclass"  value="1">
-     <b class="myclass">Humidity</b> 
-    </ion-segment-button>
-    <ion-segment-button class="myclass"  value="2">
-      <b class="myclass">Air Quality</b> 
-     </ion-segment-button>
-     <ion-segment-button class="myclass"  value="3">
-      <b class="myclass">WindSpeed</b> 
-     </ion-segment-button>
-     <ion-segment-button class="myclass"  value="4">
-      <b class="myclass">Power</b> 
-     </ion-segment-button>
-     <ion-segment-button class="myclass"  value="5">
-      <b class="myclass">Pressure</b> 
-     </ion-segment-button>
-     <ion-segment-button class="myclass"  value="6">
-      <b class="myclass">Location</b> 
-     </ion-segment-button>
-     
-  </ion-segment>
-  
-</div>
+
 </ion-header>
 
-<ion-content class="background">
- 
-     <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">  
 
-    
-<ion-slide>
-  <ion-grid>
-    <ion-row>
+
+<ion-content class="background1">
+
+
+  <div style="width:100%">
+
+
+<ion-grid>
+  <ion-row  >
  
-        <ion-col size="2"  style="position:sticky  ">
-          <ion-card class="ion-card-design" color="" >
-            <ion-card-header  class="cardalign" style="text-align: center;">
-              Temperature 
-              <p></p>
+  <ion-card class="ion-card-design" style="padding-left: 10px; width: 310px;height: 200px;"> 
+    <ion-row>
+        <ion-col  >
+          <p class="cardalign" (click)="deviceData(3)">Power Backup
+        <ngx-gauge  [type]="powerbackupType" 
+        [value]="powerbackupValue" 
+        [label]="powerbackupLabel"  
+        [append]="powerbackupAppendText"
+        [thresholds]="powerbackupthresholdConfig"
+        [min]="powerbackupmin"
+        [max]="powerbackupmax"
+        [thick]="powerbackupthick"
+        [size]="powerbackupsize">
+      </ngx-gauge> 
+      </p> 
+    </ion-col>
+    <ion-col>
+       <div style="width:80px ;height:80px;padding-top: 80px;padding-left: 30px;">
+           <ion-img  src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fbattery.png?alt=media&token=a2d0aa9d-759e-4816-b804-b8aa4c44c339">
+            </ion-img>
+         </div>
+        <div style="font-size: 10px;padding-right: 10px;padding-top: 60px;">Backup Time Left</div>
+        <div style="font-size: 18px;padding-right: 10px;">{{displayTime}}23:12:31 Hrs</div>
+    </ion-col>
+  </ion-row>
+  </ion-card> 
+  
+
+  
+    <ion-card class="ion-card-design" style="padding-left: 10px; width: 310px;height: 200px;" > 
+      <ion-row>
+          <ion-col>
+            <p class="cardalign" (click)="deviceData(3)">Temperature</p>
             <ngx-gauge [type]="watertankType" 
             [value]="watertankValue" 
             [label]="watertankLabel"  
             [append]="watertankAppendText"
-       
             [min]="watertankmin"
             [max]="watertankmax"
             [thick]="watertankthick"
             [size]="watertanksize">
-            
-          
-          </ngx-gauge> 
-          <ion-card-title class="fontsize" [color]="distance>30?'danger':(distance>18?'success':'warning')" >
-           
-          </ion-card-title>
-          DHT-11
-            <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
-            </ion-icon>  
-         </ion-card-header>
-          
-          </ion-card>
-        </ion-col>        
-  
-        
-         
-         
-           <ion-col size="6">
-          <ion-card>
-            <ion-item class="graph">
-              Temperature Data Graph
-              <ion-buttons slot="end">
-                  <ion-button (click)="presentPopover()">
-                    <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-item>
-            <ion-card-content>
-             <canvas #lineCanvas style="position: relative; height:10vh; width:10vw"></canvas>
-            </ion-card-content>
-          </ion-card>
+          </ngx-gauge>   
         </ion-col>
-      
-        
-      
-       
-      </ion-row>
-    </ion-grid>
-           
-        
-
-    </ion-slide>
-
-
-
-
-<ion-slide>
-
-  <ion-grid>
-    <ion-row>
+      <ion-col style="width: 20%;height: 30%;" >
+               <div  style="width:120px ;height:120px;padding-top: 30px;">
+                        <ion-img  src="data:image/jpeg;base64,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">
+                        </ion-img>  
+                  </div>
+                  <div style="font-size: 10px;padding-right: 10px;padding-top: 20px;">Siemens</div>
+                  <div style="font-size: 18px;padding-right: 10px;">DHT-22</div>
+      </ion-col>
+    </ion-row>
+    </ion-card> 
   
+
+
     
+
+
+
+
+      <ion-card class="ion-card-design" style="padding-left: 10px; width: 310px;height: 200px;" > 
+        <ion-row>
+            <ion-col  >
+              <p class="cardalign" (click)="deviceData(3)">Air Quality</p>
+              <ngx-gauge [type]="airgaugeType" 
+      [value]="airgaugeValue" 
+      [label]="airgaugeLabel"  
+      [append]="airgaugeAppendText"
+      [thresholds]="airthresholdConfig"
+      [min]="airmin"
+      [max]="airmax"
+      [thick]="airthick"
+      [size]="airsize">
+    </ngx-gauge>   
+      </ion-col>
+        <ion-col style="width: 20%;height: 30%;" >
+            <div style="width:100px ;height:100px;padding-top: 30px;">
+              <ion-img src="https://www.electronicscomp.com/image/cache/catalog/mq2-gas-sensor-800x800.jpg">
+               </ion-img>
+            </div>
+            <div style="font-size: 10px;padding-right: 10px;padding-top: 40px;">Zebra</div>
+            <div style="font-size: 18px;padding-right: 10px;">MQ-2</div>
+        </ion-col>
+    </ion-row>
+  </ion-card> 
+      
+
+
   
+    <ion-card class="ion-card-design" style="padding-left: 10px; width: 170px;height: 200px;">
+      <ion-card-header style="text-align: center;">
+        <ion-card-subtitle class="cardalign" (click)="deviceData(1)">
+          Humidity
+          <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
+          </ion-icon>  
+        </ion-card-subtitle>
+                  <ion-img style="width:100px ;height:60px;padding-left: 30px;padding-top: 10px;"src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fhumidity%20(1).png?alt=media&token=efd97976-9946-433f-b637-2d6647dc45aa">
+                </ion-img>
+        
+      <ion-card-title class="fontsize" [color]="data>30?'danger':(data>18?'success':'warning')" >
+        {{humditydata}}
+      </ion-card-title>
+       % of RH
+    </ion-card-header>
+    </ion-card>
   
+
+    
+
+
+ 
+     
+        <ion-card class="ion-card-design" style="padding-left: 10px; width: 310px;height: 200px;" > 
+          <ion-row>
+              <ion-col  >
+                <p class="cardalign" (click)="deviceData(3)">Object Dist.</p>
+                <ngx-gauge [type]="objectType" 
+            [value]="windspeeedValue" 
+        [label]="objectLabel"  
+        [min]="objectmin"
+        [max]="objectmax"
+        [thick]="objectthick"
+        [size]="objectsize">
+      </ngx-gauge>   
+          </ion-col>
+      
+          <ion-col style="width: 20%;height: 30%;" >
+            <div style="width:120px ;height:120px;padding-top: 30px;">
+                  <ion-img  src="https://5.imimg.com/data5/BS/PN/MY-66278010/hc-sr04-ultrasonic-sensor-module-500x500.jpg">
+                    </ion-img>
+             </div>    
+           <div style="font-size: 10px;padding-right: 10px;padding-top: 20px;">SenseInfo</div>
+            <div style="font-size: 18px;padding-right: 10px;">HC-SR04</div>    
+          </ion-col>
+        </ion-row>
+        </ion-card> 
+       
+    
+       
   
+
+
   
-      <ion-col size="2" >
-        <ion-card class="ion-card-design" color="">
+
+        <ion-card class="ion-card-design" style="padding-left: 10px; width: 170px;height: 200px;">
           <ion-card-header style="text-align: center;">
             <ion-card-subtitle class="cardalign" (click)="deviceData(1)">
-              Humidity
+              WindSpeed
               <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
               </ion-icon>  
             </ion-card-subtitle>
-            <div class="div1">
-              <ion-grid>
-                <ion-row>
-                  <ion-col size="3">
-                    </ion-col>
-                    <ion-col size="5">
-                      <ion-img width="10" height="10px" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fhumidity%20(1).png?alt=media&token=efd97976-9946-433f-b637-2d6647dc45aa">
+                    
+                    <ion-img style="width:100px ;height:60px;padding-left: 30px;padding-top: 10px;"src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fwind.png?alt=media&token=4a411b5d-f524-468e-b927-69395c519a58">
                     </ion-img>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-            </div>
+            
           <ion-card-title class="fontsize" [color]="data>30?'danger':(data>18?'success':'warning')" >
-            {{humditydata}}
+            {{windspeeddata}}22
           </ion-card-title>
-           % of RH
+          miles/hr
         </ion-card-header>
         </ion-card>
-      </ion-col>
+
 
         
-   
-     
-      
-    
-      <ion-col size="6">
-       <ion-card>
-         <ion-item class="graph">
-           Humidity Data Graph
-           <ion-buttons slot="end">
-               <ion-button (click)="presentPopover()">
-                 <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline"></ion-icon>
-               </ion-button>
-             </ion-buttons>
-           </ion-item>
-        
-         <ion-card-content>
-              <canvas #humiditygraph style="position: relative; height:10vh; width:10vw"></canvas> 
-         </ion-card-content>
-       </ion-card>
-      </ion-col> 
-      
-      
-     
-  </ion-row>
-  </ion-grid>
-  </ion-slide>
 
-  <ion-slide>
-    <!--
-    <ion-list *ngFor="let i of alertarr" >
-      <ion-item >
-        <ion-label>{{i}}</ion-label>
-      </ion-item>
-    </ion-list>
-    -->
-    
-    
-      <ion-grid>
-      <ion-row>
-     
-        <ion-col size="2" >
-          <ion-card class="ion-card-design" color="" >
-            <ion-card-header  class="cardalign" style="text-align: center;">
-             Air Quality 
-              <p></p>
-            <ngx-gauge [type]="airgaugeType" 
-            [value]="airgaugeValue" 
-            [label]="airgaugeLabel"  
-            [append]="airgaugeAppendText"
-            [thresholds]="airthresholdConfig"
-            [min]="airmin"
-            [max]="airmax"
-            [thick]="airthick"
-            [size]="airsize">
-            
-          
-          </ngx-gauge> 
-          <ion-card-title class="fontsize" [color]="distance>30?'danger':(distance>18?'success':'warning')" >
-             
-          </ion-card-title>
-          MQ-2
-            <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
-            </ion-icon>  
-         </ion-card-header> 
-          </ion-card>
-        </ion-col>
-    
-    <ion-col size="6">
-      <ion-card>
-        <ion-item class="graph">
-          Air Quality Data Graph
-          <ion-buttons slot="end">
-              <ion-button (click)="presentPopover()">
-                <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </ion-item>
-       
-        <ion-card-content>
-             <canvas #airqualitygraph style="position: relative; height:10vh; width:10vw"></canvas> 
-        </ion-card-content>
-      </ion-card>
-    </ion-col> 
-    
-    
-    </ion-row>
-    
-  
-    </ion-grid>
-    
-    
-    
-    
-    </ion-slide>
-
-    <ion-slide>
-      
-    <ion-col size="2"  >
-      <ion-card class="ion-card-design" color="">
-        <ion-card-header style="text-align: center;">
-          <ion-card-subtitle class="cardalign" (click)="deviceData(2)">
-            WindSpeed
-            <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
-            </ion-icon>  
-          </ion-card-subtitle>
-          <div class="div1">
-            <ion-grid>
-              <ion-row>
-                <ion-col size="3">
-                </ion-col>
-                <ion-col size="5">
-                    <ion-img width="10" height="10px" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fwind.png?alt=media&token=4a411b5d-f524-468e-b927-69395c519a58">
+        <ion-card class="ion-card-design" style="padding-left: 10px; width: 170px;height: 200px;">
+          <ion-card-header style="text-align: center;">
+            <ion-card-subtitle class="cardalign" (click)="deviceData(1)">
+              Pressure
+              <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
+              </ion-icon>  
+            </ion-card-subtitle>
+                    
+                   
+                    <ion-img  style="width:100px ;height:60px;padding-left: 30px;padding-top: 10px;" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fatmospheric.png?alt=media&token=a5e1f1e0-28af-4748-b038-b76c806f384a">
                     </ion-img>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-          <ion-card-title class="fontsize" [color]="distance>30?'danger':(distance>18?'success':'warning')" >
-            {{windspeeddata}}
+            
+          <ion-card-title class="fontsize" [color]="data>30?'danger':(data>18?'success':'warning')" >
+            {{pressure}}
           </ion-card-title>
-  miles/hr
-            <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
-            </ion-icon>  
-         </ion-card-header>
-      </ion-card>
-    </ion-col>
-
-    <ion-col size="6">
-      <ion-card>
-        <ion-item class="graph">
-          Windspeed Data Graph
-          <ion-buttons slot="end">
-              <ion-button (click)="presentPopover()">
-                <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </ion-item>
-        <ion-card-content>
-         <canvas #windspeedgraph style="position: relative; height:10vh; width:10vw"></canvas>
-        </ion-card-content>
-      </ion-card>
-     </ion-col> 
-    </ion-slide>
+          bars
+        </ion-card-header>
+        </ion-card>
 
 
-
-  <ion-slide>
-    <ion-col size="2" >
-      <ion-card class="ion-card-design" color="" >
-      <p class="cardalign" >Power Backup</p>
-    <ngx-gauge  [type]="powerbackupType" 
-    [value]="powerbackupValue" 
-    [label]="powerbackupLabel"  
-    [append]="powerbackupAppendText"
-    [thresholds]="powerbackupthresholdConfig"
-    [min]="powerbackupmin"
-    [max]="powerbackupmax"
-    [thick]="powerbackupthick"
-    [size]="powerbackupsize">
-  </ngx-gauge>
   
+  
+
+
+     
+        <ion-card class="ion-card-design" style="padding-left: 10px; width: 310px;height: 200px;" > 
+          <ion-row>
+              <ion-col  >
+                <p class="cardalign" (click)="deviceData(3)">WindSpeed</p>
+               
+          </ion-col>
+      
+          <ion-col style="width: 20%;height: 30%;" >
+              
+          </ion-col>
+        </ion-row>
+        </ion-card> 
+       
     
-    <ion-card-title style="font-size:20px; font-weight: bold;text-align: center;" color="primary" >
-      {{displayTime}} Hrs</ion-card-title> 
-    
+       
+  
+
+
+
+
+
+     
+</ion-row>
+</ion-grid>
+
+</div>
+
+<ion-list *ngFor="let i of alertarr" >
+  <ion-item >
+    <ion-label>{{i}}</ion-label>
+  </ion-item>
+</ion-list>
+
+
+
+
+<ion-card style=" width: 800px;height: 450px;">
+<ion-card-header style="--background:black">Temperature </ion-card-header>
+<br>
+  <apx-chart
+  #chart1
+  [series]="chartOptions1.series"
+  [chart]="chartOptions1.chart"
+  [colors]="chartOptions1.colors"
+  [yaxis]="chartOptions1.yaxis"
+  [dataLabels]="chartOptions1.dataLabels"
+  [markers]="chartOptions1.markers"
+  [stroke]="chartOptions1.stroke"
+  [grid]="chartOptions1.grid"
+  [xaxis]="chartOptions1.xaxis"
+  [tooltip]="chartOptions1.tooltip"
+  [annotations]="chartOptions1.annotations"
+></apx-chart>
+
+</ion-card>
+<!--
+
+<ion-card style=" width: 800px;height: 380px;">
+
+<div id="chart">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [xaxis]="chartOptions.xaxis"
+    [dataLabels]="chartOptions.dataLabels"
+    [grid]="chartOptions.grid"
+    [stroke]="chartOptions.stroke"
+    [title]="chartOptions.title"
+  ></apx-chart>
+</div>
+</ion-card>
+<ion-card style=" width: 500px;height: 380px;">
+  <div id="chart">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [dataLabels]="chartOptions.dataLabels"
+      [grid]="chartOptions.grid"
+      [stroke]="chartOptions.stroke"
+      [title]="chartOptions.title"
+    ></apx-chart>
+  </div>
   </ion-card>
-  </ion-col>
-
-  </ion-slide>
-
-<ion-slide>
-
-  <ion-col size="2" >
-    <ion-card class="ion-card-design" color="">
-      <ion-card-header style="text-align: center;">
-        <ion-card-subtitle class="cardalign" (click)="deviceData(1)">
-          Pressure
-          <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
-          </ion-icon>  
-        </ion-card-subtitle>
-        <div class="div1">
-          <ion-grid>
-            <ion-row>
-              <ion-col size="3">
-                </ion-col>
-                <ion-col size="5">
-                  <ion-img width="10" height="10px" src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Fatmospheric.png?alt=media&token=a5e1f1e0-28af-4748-b038-b76c806f384a">
-                </ion-img>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-      <ion-card-title class="fontsize" [color]="data>30?'danger':(data>18?'success':'warning')" >
-        {{pressure}}
-      </ion-card-title>
-      bars
-    </ion-card-header>
-    </ion-card>
-  </ion-col>
-  
-  
-  
-</ion-slide>
+<ion-item>Historic Data</ion-item>
 
 
-<ion-slide>
-  
-  <ion-col size="2" >
-    <ion-card class="ion-card-design" color="">
-      <ion-card-header style="text-align: center;">
-        <ion-card-subtitle class="cardalign" (click)="deviceData(1)">
-       Location
-          <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline">
-          </ion-icon>  
-        </ion-card-subtitle>
-        <div class="div1">
-          <ion-grid>
-            <ion-row>
-              <ion-col size="3">
-                </ion-col>
-                <ion-col size="5">
-                  <ion-img width="10" height="10px" src="https://www.clipartmax.com/png/middle/17-170231_location-icons-location-png.png">
-                </ion-img>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-      <ion-card-title class="fontsize" [color]="data>30?'danger':(data>18?'success':'warning')" >
-        {{Amsterdam}}
-      </ion-card-title>
-      Amsterdam
-    </ion-card-header>
-    </ion-card>
-  </ion-col>
-
-</ion-slide>
-
-</ion-slides>
+-->
 
 </ion-content>

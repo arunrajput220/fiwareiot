@@ -1,45 +1,89 @@
+ 
 <ion-header>
-  
+  <ion-toolbar class="myback">
+    <ion-title>
+      Egypt Smart City PoC
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
+
 
 <ion-content class="background">
   
 
-<h1 class="container1">A<i>to</i>S <br>Fiware POC</h1>  
+<!--  <h1 class="container1">Fiware POC</h1>   -->
+
+  <h1 class="container1"> </h1>   
   <div class="container">
+   
+    <ion-card class="roundshape">
+   
+     <ion-row>
 
-    <ion-card >
-      <ion-card-header>
-        <ion-card-subtitle> </ion-card-subtitle>
-        <ion-card-title>Login</ion-card-title>
-      </ion-card-header>
+      <div  class="design">
+       
 
-      <form class="form"  (ngSubmit)="loginUser()">
-
-        <ion-item>
-          <ion-label position="floating" color="primary">Email</ion-label>
-          <ion-input type="text" ></ion-input>
-        </ion-item>
+      </div>
+      <div  class="design1">
+     
         
+
+       <br>
     
+  
+        <ion-card-title>Login</ion-card-title>
+      
+<br>
+
+
+      <form form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)">
+        <div  class="design3">
+          <mat-form-field appearance="outline" style="width: 70%!important;">
+            <mat-label>E-mail</mat-label>
+            <input  type="email" formControlName="email" matInput>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="width: 70%!important;">
+            <mat-label>Password</mat-label>
+            <input  type="password" formControlName="password" class="form-controll" required matInput>
+          </mat-form-field>
+          
+        
+    <!--
         <ion-item>
           <ion-label position="floating" color="primary">Password</ion-label>
-          <ion-input type="password" ></ion-input>
+          <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
         </ion-item>
-       
-      <br>
-        <ion-button class="myback1" type="submit" >Log In</ion-button>
-      
+
+        -->
+      </div>
+    
+      <div  class="design2">
+        <ion-button expand="full" class="myback1" type="submit" >Log In</ion-button>
+        <ion-button expand="full" class="myback1" type="submit" (click)="createUser()" >Create Account</ion-button>
+      </div>
         <label class="error-message">{{errorMessage}}</label>
-      </form>
+
+        
+        
+     
+        
+        </form>
+     
     
      
     
       <p class="go-to-register">
-        No account yet? <a (click)="goToRegisterPage()">Create an account.</a>
+        <a (click)="goToRegisterPage()">Forgotten Password ?</a>
       </p>
 
-    </ion-card>
+      
+    
+  
+</div>
+  </ion-row>
+
+</ion-card>
   </div>
  <!-- <h4 class="container2">Developed by Arun Rajput</h4> -->
 </ion-content>
