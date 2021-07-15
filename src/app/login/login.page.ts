@@ -14,11 +14,31 @@ export class LoginPage implements OnInit {
   validations_form: FormGroup;
   errorMessage: string = '';
 
+res=[]
+
+  data=[
+        {name:"Arun Rajput",age:24,profile:"Systems Engineer"},
+        {name:"Mohit Gangwar",age:26,profile:"Java Developer"},
+        {name:"Devendar Yadav",age:25,profile:"SP Politician"},
+        {name:"Jitendra Tomar",age:27,profile:"Database Engineer"},
+        {name:"Harshit Garg",age:20,profile:"Quality Engineer"}
+      ]
+
+array1 = ['a', 'b', 'c', 'd', 'e'];
+
   constructor(public loadingController: LoadingController,private menuCtrl:MenuController,public router: Router,public api:RestapiService, private formBuilder: FormBuilder) {
     this.menuCtrl.enable(false);
-
     
+    
+    console.log(this.data.filter(value => value.age > 26))
+// console.log(this.data.values())
+// for (let letter of this.data.values()) {
+//   console.log(letter);
+//  }
 
+   this.res= this.data.map(value => {
+    return value.age -3
+   })
    }
   
 

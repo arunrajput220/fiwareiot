@@ -64,18 +64,19 @@
   --background: Primary;
 
     color: #312b2b;
+    //style=" border: 3px solid green;"
     }
   
     
   .myback1{
-    --background: #075e54;
+    --background: #12232E;
     color: #F5F5F5;
     }
   
     .background{
     // --background: #fff url("../../assets/images/23.jpg") no-repeat center center;
     // --background:#8B8B81;
-    --background: #fff url("../../assets/images/50.jpg") no-repeat ;
+    --background: #fff url("../../assets/images/90.jpg") no-repeat ;
     opacity: 0.9
      }
   
@@ -169,5 +170,28 @@ ion-button {
                             filter: drop-shadow( 0px 20px 6px rgba(0,0,0,0.3) );
                 }
 
+                .user {
+                  display: inline-block;
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                
+                  background-repeat: no-repeat;
+                  background-position: center center;
+                  background-size: cover;
+                }
+                
+                .one {
+                  background-image: url("https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Farun.jpg?alt=media&token=c5ab92a5-6023-419b-ae87-257a8b8e501c");
+                }
+                
+                .two {
+                  background-image: url('http://placehold.it/200x200');
+                }
+                
+                .three {
+                  background-image: url('http://placehold.it/200x400');
+                }
 
+                
 

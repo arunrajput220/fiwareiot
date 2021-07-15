@@ -38,7 +38,8 @@ export class EntitymanagerPage implements OnInit {
     this.data1=[]
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
-     message:"Loding Entities...."
+     message:"Loding Entities....",
+     duration:2000
     });
    await loading.present()
     await this.api.getEntity()

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { ToastrService } from 'ngx-toastr';
 
@@ -10,11 +11,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomePage implements OnInit {
 
-  sidemenu:boolean=false
+  sidemenu:boolean=true
 
   constructor(
     private toastr: ToastrService,
-    private menuCtrl:MenuController,/*public inAppBrowser: InAppBrowser*/) { 
+    private menuCtrl:MenuController,
+    private router:Router,
+    /*public inAppBrowser: InAppBrowser*/) { 
      this.menuCtrl.enable(true);
   //  // this.menuCtrl.swipeGesture(true)
   //     this.toastr.success('Hello world!', 'Toastr fun!');
@@ -49,5 +52,9 @@ export class HomePage implements OnInit {
     }
     console.log(this.sidemenu)
   //  this.menucontrol();
+  }
+
+  logout(){
+    this.router.navigateByUrl('login');
   }
 }

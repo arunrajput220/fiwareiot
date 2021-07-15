@@ -4,15 +4,15 @@
 
    position:relative; 
     
-    left:400px; 
-    width:770px; 
+    left:25%; 
+    width:55%; 
 
-  padding-top: 100px;
-   
+  padding-top: 6%;   
   }
 
-.roundshape{
+.logincard{
   border-radius: 25px;
+  width: 90%;
 }
 
 
@@ -83,11 +83,11 @@
    --background:#f7f7f7d0;
      }
 
-     .design{
+     .atoslogo{
       // background-size: 100%;
       // background-repeat: no-repeat!important;
       // background-size: cover!important;
-       width: 300px!important;
+       width: 35%!important;
       // height: 100vh!important;
       // margin-left: -10%!important;
       // background-attachment: fixed!important;
@@ -96,12 +96,12 @@
       background: #fff url("../../assets/images/1134.png") no-repeat center center;
     }
 
-    .design1{
+    .logincontent{
       // background-size: 100%;
       // background-repeat: no-repeat!important;
       // background-size: cover!important;
       // width: 60%!important;
-      width: 450px;
+      width: 60%;
       // height: 100vh!important;
       // margin-left: -10%!important;
       // background-attachment: fixed!important;
@@ -110,11 +110,11 @@
      // background: #fff url("../../assets/images/sd.jpg") no-repeat center center;
     }
 
-    .design2{
+    .buttonsize{
       // background-size: 100%;
       // background-repeat: no-repeat!important;
       // background-size: cover!important;
-       width: 50%!important;
+       width: 60%!important;
       // height: 100vh!important;
        margin-left: 24%!important;
       // background-attachment: fixed!important;
@@ -126,11 +126,12 @@
       // background-size: 100%;
       // background-repeat: no-repeat!important;
       // background-size: cover!important;
-     // width: 200%!important;
+      width: 120%!important;
       // height: 100vh!important;
       margin-left: -6%!important;
       // background-attachment: fixed!important;
       // margin-top: -10%!important;
       // background-position: center center!important;
      // background: #fff url("../../assets/images/sd.jpg") no-repeat center center;
+    
     }

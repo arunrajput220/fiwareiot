@@ -25,22 +25,24 @@ export class AppComponent {
       title: 'Data Visulizer',
       url: '/datavisualize',
       icon: 'bar-chart'
-    },  
-      {
-      title: 'Identity Manager',
-      url: '/idm',
-      icon: 'shield-half'
-    },  
-    {
-      title: 'WireCloud Platform',
-      url: '/wirecloud',
-      icon: 'dice'
-    },
-    {
-      title: 'Control Panel',
-      url: '/controlpanel',
-      icon: 'toggle'
-    },{
+     }
+     //,  
+    //   {
+    //   title: 'Identity Manager',
+    //   url: '/idm',
+    //   icon: 'shield-half'
+    // },  
+    // {
+    //   title: 'WireCloud Platform',
+    //   url: '/wirecloud',
+    //   icon: 'dice'
+    // },
+    // {
+    //   title: 'Control Panel',
+    //   url: '/controlpanel',
+    //   icon: 'toggle'
+    // }
+    ,{
       title: 'Monitor',
       url: '/monitor',
       icon: 'settings'

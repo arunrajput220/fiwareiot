@@ -44,7 +44,7 @@
 <ion-grid>
   <ion-row  >
  
-  <ion-card class="ion-card-design" style="padding-left: 10px; width: 310px;height: 200px;"> 
+  <ion-card class="ion-card-design" style="padding-left: 10px; width: 310px;height: 200px;--background: #fff url('../../assets/images/.jpg') no-repeat center center;"> 
     <ion-row>
         <ion-col  >
           <p class="cardalign" (click)="deviceData(3)">Power Backup
@@ -153,6 +153,28 @@
   
 
     
+
+
+    <ion-card style="margin: 15px;"style=" width: 1600px;height: 450px;">
+      <ion-card-header style="--background:black">Temperature </ion-card-header>
+      <br>
+        <apx-chart
+        #chart1
+        [series]="chartOptions1.series"
+        [chart]="chartOptions1.chart"
+        [colors]="chartOptions1.colors"
+        [yaxis]="chartOptions1.yaxis"
+        [dataLabels]="chartOptions1.dataLabels"
+        [markers]="chartOptions1.markers"
+        [stroke]="chartOptions1.stroke"
+        [grid]="chartOptions1.grid"
+        [xaxis]="chartOptions1.xaxis"
+        [tooltip]="chartOptions1.tooltip"
+        [annotations]="chartOptions1.annotations"
+      ></apx-chart>
+      
+      </ion-card>
+
 
 
  

@@ -24,7 +24,11 @@ check:any;
 
 param:any;
 
+backendip="52.174.56.163";
+
   constructor(public http: HttpClient) { }
+
+//---------------------------------------------------------------------------------------------
 
   geteuphrydata(location_id,profile_id){
     var payload = {"locationid":location_id, "profileid": profile_id} 
@@ -63,6 +67,7 @@ param:any;
 
   }
 
+
   opspanel(){
     // console.log(value.email)
     // console.log(value.password)
@@ -75,14 +80,14 @@ param:any;
   }
 
 
-
+//------------------------------------------------------------------------------
 
 
   cygusparamset(val){
 this.param =val
   }
   getEntitydata(): Observable<any> {
-   let url ="http://137.135.116.1:3001/fiware/cynus/getdata/"+this.param
+   let url ="http://"+this.backendip+":3001/fiware/cynus/getdata/"+this.param
    console.log(url)
     return this.http.get(url, httpOptionsfirebase)
   }
@@ -90,7 +95,7 @@ this.param =val
 
 
   getEntityinfo(ename): Observable<any> {
-    let url ="http://137.135.116.1:3001/fiware/orion/getentity/"+ename
+    let url ="http://"+this.backendip+":3001/fiware/orion/getentity/"+ename
     console.log(url)
      return this.http.get(url, httpOptionsfirebase)
    }
@@ -98,7 +103,7 @@ this.param =val
 
   
       getorionrealtime(val): Observable<any> {
-       let url ="http://137.135.116.1:3001/fiware/orion/getdata/"+val
+       let url ="http://"+this.backendip+":3001/fiware/orion/getdata/"+val
        console.log(url)
         return this.http.get(url, httpOptionsfirebase)
       }
@@ -114,7 +119,7 @@ this.param =val
      data=JSON.parse(data)
     console.log(data)
     */
-        return this.http.get("http://137.135.116.1:3001/fiware/cynus/getdata/"+this.param,httpOptionsfirebase)
+        return this.http.get("http://"+this.backendip+":3001/fiware/cynus/getdata/"+this.param,httpOptionsfirebase)
       }
 
 
@@ -126,7 +131,7 @@ this.param =val
 
 
   getEntity(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3001/fiware/getentity", httpOptions)
+    return this.http.get("http://"+this.backendip+":3001/fiware/getentity", httpOptions)
   }
 
   createEntity(payload): Observable<any> {
@@ -137,7 +142,7 @@ this.param =val
 
  
 
-    return this.http.post("http://137.135.116.1:3000/fiware/createentity", payload,httpOptionsfirebase)
+    return this.http.post("http://"+this.backendip+":3000/fiware/createentity", payload,httpOptionsfirebase)
     /*
 
    let fiware_service_ls ;
@@ -221,7 +226,7 @@ data1 = JSON.stringify(data1)
 let data = JSON.parse(data1)
   console.log(data)
 
-     return this.http.post("http://137.135.116.1:3001/fiware/orion/createentity",(data) ,httpOptionsfirebase)
+     return this.http.post("http://"+this.backendip+":3001/fiware/orion/createentity",(data) ,httpOptionsfirebase)
     }
 
 
@@ -230,36 +235,36 @@ let data = JSON.parse(data1)
 
   getNorthWeatherStation(): Observable<any> {
   //  return this.http.get("http://137.135.116.1:3000/fiware/northweatherstation",httpOptionsStateWeatherDepartment)
-   return this.http.get("http://20.197.62.1:3001/v2/entities/urn:ngsi-ld:NorthWeatherStation", httpOptionsStateWeatherDepartment)
+   return this.http.get("http://"+this.backendip+":3001/v2/entities/urn:ngsi-ld:NorthWeatherStation", httpOptionsStateWeatherDepartment)
   }
 
   getNorthWeatherStationfromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3001/fiware/northweatherstation", httpOptions)
+    return this.http.get("http://"+this.backendip+":3001/fiware/northweatherstation", httpOptions)
   }
 
   getNorthWeatherStationfromnodeserverofcunus(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3001/fiware/cynus", httpOptions)
+    return this.http.get("http://"+this.backendip+":3001/fiware/cynus", httpOptions)
   }
 
   getTemperatureNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3001/fiware/cynus/temperature", httpOptions)
+    return this.http.get("http://"+this.backendip+":3001/fiware/cynus/temperature", httpOptions)
   }
   getHumidityNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3001/fiware/cynus/humidity", httpOptions)
+    return this.http.get("http://"+this.backendip+":3001/fiware/cynus/humidity", httpOptions)
   }
 
   getAirQualityNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3001/fiware/cynus/airquality", httpOptions)
+    return this.http.get("http://"+this.backendip+":3001/fiware/cynus/airquality", httpOptions)
   }
 
   getWindSpeedNorthWeatherStationCgynusHistoricdatafromnodeserver(): Observable<any> {
-    return this.http.get("http://137.135.116.1:3001/fiware/cynus/windspeed", httpOptions)
+    return this.http.get("http://"+this.backendip+":3001/fiware/cynus/windspeed", httpOptions)
   }
 
 
 
   getSouthWeatherStationfromnodeserver(): Observable<any> {
-    return this.http.get("http://localhost:3001/fiware/southweatherstation", httpOptions)
+    return this.http.get("http://"+this.backendip+":3001/fiware/southweatherstation", httpOptions)
   }
 
 

@@ -249,7 +249,7 @@ this.fix()
       cssClass: 'my-custom-class',
       message: 'Fetching Data....'
     });
-   await loading.present()
+ //  await loading.present()
     await this.api.getNorthWeatherStationfromnodeserver()
           .subscribe(res => { 
             console.log(res)

@@ -1,8 +1,31 @@
 <ion-header>
-  <ion-toolbar class="myback1"> 
+   
+</ion-header>
+
+<ion-content class="background">
+ 
+  <div >
+   <div style="font-style: italic;font-weight: bold;font-size: 20px;padding-top: 1%;padding-left: 3%;color:rgb(231, 227, 227);">
+    
+    DeviceLynx
+   </div>
+   
+   <div style="position: absolute;
+   top: 10px;
+   right: 10px;">
+    
+  
+    <ion-button size="small" shape="round" (click)="logout()">LogOut</ion-button>
+  <!--  <div class="user one">
+    </div>-->
+   </div>
+  </div>
+
+<!--
+  <ion-toolbar  class="background"> 
     <ion-buttons  slot="start">
 
-      <ion-button  (click)="menuctlfun()" style="padding-left: 0%;">
+      <ion-button  (click)="menuctlfun()" style="padding-left: 0%; ">
         <ion-icon slot="end" name="menu"></ion-icon>
        
       </ion-button>
@@ -15,21 +38,21 @@
           <ion-icon name="person"></ion-icon>
         </ion-button>
         
-        <ion-button class="iconsize" (click)="logout()">
-          <ion-icon slot="end" name="log-out-outline"></ion-icon>
+        <ion-button color="primary"  (click)="logout()">Log Out
+         
         </ion-button>
-       
+        
       
       </ion-buttons>
-    </ion-toolbar>    
-</ion-header>
-
-<ion-content class="background">
+    </ion-toolbar> -->
+    <br>
+    <br>
+    <br> 
 
   <div class=""> 
     <div class="">
 
-      <div style="font-style: italic   ;font-weight: bold;font-size: 42px;left: 520px; position:absolute; top:20px; width:520px; height:70px;color:rgb(231, 227, 227);">
+      <div style="font-style: italic;font-weight: bold;font-size: 42px;left: 38%; position:absolute; padding-top:50px; width:520px; height:70px;color:rgb(231, 227, 227);">
    
         AtoS Smart City PoC
         
@@ -37,7 +60,7 @@
       </div>
     <!-- <img src="https://firebasestorage.googleapis.com/v0/b/texp-fc27d.appspot.com/o/appimages%2Farun.jpg?alt=media&token=c5ab92a5-6023-419b-ae87-257a8b8e501c" [alt]="Arun">
    --> 
-   <div style="font-size: 20px; position:absolute; top:32px;left:600px; width:520px; height:70px ;margin: 30px;opacity: 0.9;color:white;background: transparent;">
+   <div style="font-size: 20px; position:absolute; padding-top:62px;left:43%; width:520px; height:70px ;margin: 30px;opacity: 0.9;color:white;background: transparent;">
     
     Powered by Fiware
    
@@ -47,4 +70,18 @@
     </div>
     </div>
 
+  <!--  <div style="height: 200px;
+    position: relative;
+  
+       margin: 0;
+      position: absolute;
+      top:45%;
+      padding-left: 45%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      ">
+     <ion-button shape="round" style="color:rgb(231, 227, 227)" fill="">Connect with Us</ion-button>
+      </div>
+    -->
+    
 </ion-content>

@@ -343,7 +343,26 @@ this.initChart()
               x: "2021-04-30 08:50:45",
               y: 76
             }]
-          }
+          },
+          { name: "Pressure",
+            data: [{
+              x: "2021-04-28 08:48:45",
+              y: 20
+            },
+            {
+              x: "2021-04-29 08:50:45",
+              y: 80
+            },
+            {
+              x: "2021-05-23 08:50:45",
+              y: 90
+            },
+            {
+              x: "2021-05-29 08:50:45",
+              y: 100
+            }]
+          },
+            
         
       ],
       chart: {
@@ -386,7 +405,7 @@ this.initChart()
       },
       xaxis: {
         type: "datetime",
-        min: new Date("01 Mar 2021").getTime(),
+       // min: new Date("01 Mar 2021").getTime(),
         tickAmount: 6
       },
       tooltip: {
