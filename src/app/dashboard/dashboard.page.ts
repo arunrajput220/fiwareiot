@@ -177,19 +177,12 @@ this.fix()
 
     await alert.present();
   }
-
- 
-
-
-
   fix(){
     setInterval( ()=>{
       this.Initizationonce();
     },5000)  
    }
-
-
-   async Initizationonce(){
+  async Initizationonce(){
     this.entities=[]
     const loading = await this.loadingController.create({
       cssClass: 'my-custom-class',
@@ -198,17 +191,14 @@ this.fix()
   // await loading.present()
     await this.api.getNorthWeatherStationfromnodeserver()
           .subscribe(res => { 
-            console.log(res)
-           
-          
-           let check = res.id
-            this.title = check.slice(12,32)
-           
-           this.humditydata = res.Humidity.value;
-          // console.log("Humidity : ",this.humditydata)          
-            this.watertankValue =res.Temperature.value;
+              console.log(res)
+              let check = res.id
+              this.title = check.slice(12,32)
+              this.humditydata = res.Humidity.value;
+            // console.log("Humidity : ",this.humditydata)          
+              this.watertankValue =res.Temperature.value;
           // console.log("Temperature : ",this.watertankValue)
-           this.windspeeddata = res.WindSpeed.value;
+            this.windspeeddata = res.WindSpeed.value;
            this.airgaugeValue = res["Air Quality"].value;
            this.pressure =res.Pressure.value;
            this.powerbackupValue =res.Power.value;

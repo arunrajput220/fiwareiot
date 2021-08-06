@@ -28,6 +28,17 @@ backendip="52.174.56.163";
 
   constructor(public http: HttpClient) { }
 
+
+
+
+contextbrokerhealth(): Observable<any> {
+  console.log("API call")
+//  var data = this.http.get("http://localhost:3001/fiware/contextbroker/heath", httpOptionsfirebase)
+//  console.log(data)
+
+  return this.http.get("http://localhost:3001/fiware/contextbroker/heath", httpOptionsfirebase)
+}
+
 //---------------------------------------------------------------------------------------------
 
   geteuphrydata(location_id,profile_id){
