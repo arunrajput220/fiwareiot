@@ -46,6 +46,10 @@ export class AppComponent {
       title: 'Monitor',
       url: '/monitor',
       icon: 'settings'
+    },{
+      title: 'Core Services',
+      url: '/coreservice',
+      icon: 'git-network'
     },
 
     

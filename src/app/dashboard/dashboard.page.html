@@ -262,9 +262,9 @@ miles/hr
 
 
 
-<ion-row>
+<ion-row >
  
-  <ion-col col-12 col-xl-2 col-lg-3 col-md-4>
+  <ion-col size="6">
  <ion-card>
    <ion-item class="graph">
      Windspeed Data Graph
@@ -280,7 +280,7 @@ miles/hr
  </ion-card>
 </ion-col> 
 
-<ion-col col-12 col-xl-2 col-lg-3 col-md-4>
+<ion-col size="6">
  <ion-card>
    <ion-item class="graph">
      Humidity Data Graph
@@ -302,5 +302,23 @@ miles/hr
 </ion-grid>
 </div>
 
+
+<!--
+<ion-col col-12 col-xl-2 col-lg-3 col-md-4>
+  <ion-card>
+    <ion-item class="graph">
+      Windspeed Data Graph
+      <ion-buttons slot="end">
+          <ion-button (click)="presentPopover()">
+            <ion-icon slot="icon-only" ios="alert-circle-outline" md="alert-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    <ion-card-content>
+     <canvas #windspeedgraph style="position: relative; height:10vh; width:10vw"></canvas>
+    </ion-card-content>
+  </ion-card>
+ </ion-col> 
+-->
 
 </ion-content>

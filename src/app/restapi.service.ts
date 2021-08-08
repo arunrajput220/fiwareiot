@@ -24,7 +24,8 @@ check:any;
 
 param:any;
 
-backendip="52.174.56.163";
+backendip="13.95.3.171";
+
 
   constructor(public http: HttpClient) { }
 
@@ -32,12 +33,42 @@ backendip="52.174.56.163";
 
 
 contextbrokerhealth(): Observable<any> {
-  console.log("API call")
-//  var data = this.http.get("http://localhost:3001/fiware/contextbroker/heath", httpOptionsfirebase)
-//  console.log(data)
 
-  return this.http.get("http://localhost:3001/fiware/contextbroker/heath", httpOptionsfirebase)
+
+//   //var  response = this.http.get("http://"+this.backendip+":3002/fiware/contextbroker/health", httpOptionsfirebase)
+// //console.log(response)
+//   if (this.http.get("http://"+this.backendip+":3002", httpOptionsfirebase)){
+//     return this.http.get("http://"+this.backendip+":3002/fiware/contextbroker/health", httpOptionsfirebase)
+// }else{
+//   return null
+// }
+  return this.http.get("http://"+this.backendip+":3002/fiware/contextbroker/health", httpOptionsfirebase)
 }
+
+
+
+Cygnushealth(): Observable<any> {
+
+  return this.http.get("http://"+this.backendip+":3002/fiware/cygnus/health", httpOptionsfirebase)
+}
+
+keyrockhealth(): Observable<any> {
+
+  return this.http.get("http://"+this.backendip+":3002/fiware/keyrock/health", httpOptionsfirebase)
+}
+
+
+pepproxykhealth(): Observable<any> {
+
+  return this.http.get("http://"+this.backendip+":3002/fiware/pep_proxy/health", httpOptionsfirebase)
+}
+
+mongodbkhealth(): Observable<any> {
+
+  return this.http.get("http://"+this.backendip+":3002/fiware/mongodb/health", httpOptionsfirebase)
+}
+
+
 
 //---------------------------------------------------------------------------------------------
 
